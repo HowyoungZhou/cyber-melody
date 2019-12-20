@@ -41,6 +41,7 @@
 *_summary.xml
 *_usage.xml
 *_xst.xrpt
+fuse*
 
 # iMPACT generated files
 _impactbatch.log
@@ -65,3 +66,9 @@ xlnx_auto_0_xdb/
 xst/
 _ngo/
 _xmsgs/
+isim
+
+# files of simulator
+*_isim_beh.*
+isim*
+xilinxsim.ini
