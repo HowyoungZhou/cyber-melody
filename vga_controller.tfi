@@ -1,0 +1,19 @@
+
+
+
+// Instantiate the module
+vga_controller instance_name (
+    .vga_clk(vga_clk), 
+    .clrn(clrn), 
+    .d_in(d_in), 
+    .row_addr(row_addr), 
+    .col_addr(col_addr), 
+    .rdn(rdn), 
+    .r(r), 
+    .g(g), 
+    .b(b), 
+    .hs(hs), 
+    .vs(vs)
+    );
+
+

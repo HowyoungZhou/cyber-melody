@@ -59,6 +59,7 @@ par_usage_statistics.html
 usage_statistics_webtalk.html
 webtalk.log
 webtalk_pn.xml
+*.log
 
 # generated folders
 iseconfig/
