@@ -1,0 +1,13 @@
+
+
+
+// Instantiate the module
+keypad instance_name (
+    .clk(clk), 
+    .row(row), 
+    .col(col), 
+    .ready(ready), 
+    .keycode(keycode)
+    );
+
+

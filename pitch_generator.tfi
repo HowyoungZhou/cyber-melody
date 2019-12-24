@@ -1,0 +1,12 @@
+
+
+
+// Instantiate the module
+pitch_generator instance_name (
+    .note(note), 
+    .octave(octave), 
+    .clk(clk), 
+    .wave(wave)
+    );
+
+

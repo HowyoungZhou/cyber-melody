@@ -21,7 +21,7 @@
 module anti_jitter(
     input clk,
     input I,
-    output O
+    output reg O
     );
 
     parameter WIDTH = 20;

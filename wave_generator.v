@@ -36,7 +36,7 @@ module wave_generator(
                 wave <= 1;
                 counter <= 0;
             end
-            else wave = 0;
+            else wave <= 0;
         end
         else begin
             counter <= 0;

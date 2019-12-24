@@ -1,0 +1,12 @@
+
+
+
+// Instantiate the module
+piano_keypad instance_name (
+    .ready(ready), 
+    .keycode(keycode), 
+    .note(note), 
+    .octave(octave)
+    );
+
+

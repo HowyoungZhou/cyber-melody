@@ -63,6 +63,6 @@ module keypad(
         endcase
     end
     
-    anti_jitter #(4) (.clk(clk), .I(raw), .O(ready));
+    anti_jitter #(4) anti_jitter(.clk(clk), .I(raw), .O(ready));
 
 endmodule
