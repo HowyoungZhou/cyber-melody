@@ -27,42 +27,42 @@ module keypad(
     );
 
     reg state = 1'b0;
-	reg [3:0] keyLineX;
-	reg [4:0] keyLineY;
-	assign row = state? 4'h0: 4'bzzzz;
-	assign col = state? 5'bzzzzz: 5'h0;
-	
-	always @ (posedge clk)
-	begin
-		if(state)
-			keyLineY <= col;
-		else
-			keyLineX <= row;
-		state <= ~state;
-	end
+    reg [3:0] keyLineX;
+    reg [4:0] keyLineY;
+    assign row = state? 4'h0: 4'bzzzz;
+    assign col = state? 5'bzzzzz: 5'h0;
+    
+    always @ (posedge clk)
+    begin
+        if(state)
+            keyLineY <= col;
+        else
+            keyLineX <= row;
+        state <= ~state;
+    end
 
-	wire raw_row = (keyLineX == 4'b1110) | (keyLineX == 4'b1101) | (keyLineX == 4'b1011) | (keyLineX == 4'b0111);
-	wire raw_col = (keyLineY == 5'b11110) | (keyLineY == 5'b11101) | (keyLineY == 5'b11011) | (keyLineY == 5'b10111) | (keyLineY == 5'b01111);
-	wire raw = raw_row & raw_col;
-	
-	always @*
-	begin
-		case(keyLineX)
-		4'b1110: keycode[1:0] <= 2'h0;
-		4'b1101: keycode[1:0] <= 2'h1;
-		4'b1011: keycode[1:0] <= 2'h2;
-		default: keycode[1:0] <= 2'h3;
-		endcase
-		case(keyLineY)
-		5'b11110: keycode[4:2] <= 3'h0;
-		5'b11101: keycode[4:2] <= 3'h1;
-		5'b11011: keycode[4:2] <= 3'h2;
-		5'b10111: keycode[4:2] <= 3'h3;
-		5'b01111: keycode[4:2] <= 3'h4;
-		default: keycode[4:2] <= 3'h7;
-		endcase
-	end
-	
-	anti_jitter #(4) (.clk(clk), .I(raw), .O(ready));
+    wire raw_row = (keyLineX == 4'b1110) | (keyLineX == 4'b1101) | (keyLineX == 4'b1011) | (keyLineX == 4'b0111);
+    wire raw_col = (keyLineY == 5'b11110) | (keyLineY == 5'b11101) | (keyLineY == 5'b11011) | (keyLineY == 5'b10111) | (keyLineY == 5'b01111);
+    wire raw = raw_row & raw_col;
+    
+    always @*
+    begin
+        case(keyLineX)
+        4'b1110: keycode[1:0] <= 2'h0;
+        4'b1101: keycode[1:0] <= 2'h1;
+        4'b1011: keycode[1:0] <= 2'h2;
+        default: keycode[1:0] <= 2'h3;
+        endcase
+        case(keyLineY)
+        5'b11110: keycode[4:2] <= 3'h0;
+        5'b11101: keycode[4:2] <= 3'h1;
+        5'b11011: keycode[4:2] <= 3'h2;
+        5'b10111: keycode[4:2] <= 3'h3;
+        5'b01111: keycode[4:2] <= 3'h4;
+        default: keycode[4:2] <= 3'h7;
+        endcase
+    end
+    
+    anti_jitter #(4) (.clk(clk), .I(raw), .O(ready));
 
 endmodule
