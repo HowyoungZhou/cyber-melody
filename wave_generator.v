@@ -20,6 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 module wave_generator(
     input clk,
+    input en,
     input [31:0] period,
     output reg wave
     );
@@ -29,11 +30,17 @@ module wave_generator(
     reg [31:0] counter = 0;
 
     always@(posedge clk)begin
-        counter <= counter + clk_period;
-        if(counter >= period)begin
-            wave <= 1;
-            counter <= 0;
+        if (en) begin
+            counter <= counter + clk_period;
+            if(counter >= period)begin
+                wave <= 1;
+                counter <= 0;
+            end
+            else wave = 0;
         end
-        else wave = 0;
+        else begin
+            counter <= 0;
+            wave <= 0;
+        end
     end
 endmodule

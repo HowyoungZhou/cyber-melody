@@ -25,8 +25,11 @@ module pitch_generator(
     output wave
     );
 
-    wire [7:0] period_addr = note * 10 + octave;
+    wire [7:0] period_addr = (note - 1) * 10 + octave;
     wire [31:0] period;
+    wire en;
+
+    assign en = note == 0;
 
     pitch_period_table pitch_period_table_rom (
         .a(period_addr), // input [7 : 0] a
@@ -35,6 +38,7 @@ module pitch_generator(
 
     wave_generator wave_gen (
         .clk(clk),
+        .en(en),
         .period(period),
         .wave(wave)
     );
