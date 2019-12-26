@@ -3,8 +3,8 @@ _xmsgs\pn_parser.xmsgs
 summary.log
 vram.asy
 vram.gise
+vram.mif
 vram.ngc
-vram.sym
 vram.v
 vram.veo
 vram.xco

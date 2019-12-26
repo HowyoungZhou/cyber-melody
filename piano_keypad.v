@@ -39,28 +39,31 @@ module piano_keypad(
     parameter AS = 11;
     parameter B = 12;
 
-    always@(posedge ready)begin
-        case (keycode)
-            4: note <= C;
-            8: note <= CS;
+    always@(ready)begin
+        if(ready)begin
+            case (keycode)
+                4: note <= C;
+                8: note <= CS;
 
-            5: note <= D;
-            9: note <= DS;
+                5: note <= D;
+                9: note <= DS;
 
-            6: note <= E;
-            7: note <= F;
-            11: note <= FS;
+                6: note <= E;
+                7: note <= F;
+                11: note <= FS;
 
-            12: note <= G;
-            16: note <= GS;
-            
-            13: note <= A;
-            17: note <= AS;
-            14: note <= B;
+                12: note <= G;
+                16: note <= GS;
+                
+                13: note <= A;
+                17: note <= AS;
+                14: note <= B;
 
-            15: octave <= (octave + 1 > 9 ? 9 : octave + 1);
-            19: octave <= (octave - 1 < 0 ? 0 : octave - 1);
-            default: note <= rest;
-        endcase
+                15: octave <= (octave + 1 > 9 ? 9 : octave + 1);
+                19: octave <= (octave - 1 < 0 ? 0 : octave - 1);
+                default: note <= rest;
+            endcase
+        end
+        else note <= rest;
     end
 endmodule
