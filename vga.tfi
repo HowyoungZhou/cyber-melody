@@ -1,0 +1,19 @@
+
+
+
+// Instantiate the module
+vga instance_name (
+    .vram_clk(vram_clk), 
+    .vga_clk(vga_clk), 
+    .clrn(clrn), 
+    .we(we), 
+    .addr(addr), 
+    .data(data), 
+    .r(r), 
+    .g(g), 
+    .b(b), 
+    .hs(hs), 
+    .vs(vs)
+    );
+
+

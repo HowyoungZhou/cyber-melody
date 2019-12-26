@@ -43,7 +43,7 @@ module vga(
         .wea(we), // input [0 : 0] wea
         .addra(addr), // input [18 : 0] addra
         .dina(data), // input [11 : 0] dina
-        .clkb(vga_clk), // input clkb
+        .clkb(vram_clk), // input clkb
         .enb(~rdn), // input enb
         .addrb(vout_addr), // input [18 : 0] addrb
         .doutb(vout_data) // output [11 : 0] doutb

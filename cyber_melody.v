@@ -20,8 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 module cyber_melody(
     input clk,
-    inout [3:0] button_row,
-    inout [4:0] button_col,
+    input rst_n,
+    inout [3:0] btn_y,
+    inout [4:0] btn_x,
+    output [3:0] vga_red,
+    output [3:0] vga_green,
+    output [3:0] vga_blue,
+    output vga_h_sync,
+    output vga_v_sync,
     output buzzer
     );
 
@@ -42,8 +48,8 @@ module cyber_melody(
 
     keypad keypad (
         .clk(div[15]), 
-        .row(button_row), 
-        .col(button_col), 
+        .row(btn_y), 
+        .col(btn_x), 
         .ready(ready),
         .keycode(keycode)
         );
@@ -53,5 +59,19 @@ module cyber_melody(
         .keycode(keycode), 
         .note(note), 
         .octave(octave)
+        );
+
+    vga vga (
+        .vram_clk(clk), 
+        .vga_clk(div[1]), 
+        .clrn(rst_n), 
+        .we(0), 
+        .addr(0), 
+        .data(0), 
+        .r(vga_red), 
+        .g(vga_green), 
+        .b(vga_blue), 
+        .hs(vga_h_sync), 
+        .vs(vga_v_sync)
         );
 endmodule
