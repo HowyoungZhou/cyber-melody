@@ -10,8 +10,8 @@ def main():
 
 
 def rgb12_pixel_generator(im):
-    for x in range(0, im.width):
-        for y in range(0, im.height):
+    for y in range(0, im.height):
+        for x in range(0, im.width):
             pixel = im.getpixel((x, y))
             rgb12_pixel = 0
             for i in range(0, 3):

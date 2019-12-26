@@ -60,7 +60,6 @@ wave add /vram_tb/status
       wave add  /vram_tb/vram_synth_inst/BMG_PORT/WEA
       wave add  /vram_tb/vram_synth_inst/BMG_PORT/CLKB
       wave add  /vram_tb/vram_synth_inst/BMG_PORT/ADDRB
-      wave add  /vram_tb/vram_synth_inst/BMG_PORT/ENB
       wave add  /vram_tb/vram_synth_inst/BMG_PORT/DOUTB
 run all
 quit

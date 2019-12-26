@@ -19,6 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module piano_keypad(
+    input clk,
     input ready,
     input [4:0] keycode,
     output reg [3:0] note = 0,
@@ -39,7 +40,7 @@ module piano_keypad(
     parameter AS = 11;
     parameter B = 12;
 
-    always@(ready)begin
+    always@(posedge clk)begin
         if(ready)begin
             case (keycode)
                 4: note <= C;

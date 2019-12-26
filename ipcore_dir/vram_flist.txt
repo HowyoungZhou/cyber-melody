@@ -5,6 +5,7 @@ vram.asy
 vram.gise
 vram.mif
 vram.ngc
+vram.sym
 vram.v
 vram.veo
 vram.xco

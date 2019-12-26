@@ -113,7 +113,6 @@ COMPONENT vram_exdes
     CLKA       : IN STD_LOGIC;
 
       --Inputs - Port B
-    ENB            : IN STD_LOGIC;  --opt port
     ADDRB          : IN STD_LOGIC_VECTOR(18 DOWNTO 0);
     DOUTB          : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
     CLKB           : IN STD_LOGIC
@@ -133,8 +132,6 @@ END COMPONENT;
   SIGNAL DINA_R: STD_LOGIC_VECTOR(11 DOWNTO 0) := (OTHERS => '0');
   SIGNAL CLKB: STD_LOGIC := '0';
   SIGNAL RSTB: STD_LOGIC := '0';
-  SIGNAL ENB: STD_LOGIC := '0';
-  SIGNAL ENB_R: STD_LOGIC := '0';
   SIGNAL ADDRB: STD_LOGIC_VECTOR(18 DOWNTO 0) := (OTHERS => '0');
   SIGNAL ADDRB_R: STD_LOGIC_VECTOR(18 DOWNTO 0) := (OTHERS => '0');
   SIGNAL DOUTB: STD_LOGIC_VECTOR(11 DOWNTO 0);
@@ -247,7 +244,6 @@ STATUS(7 DOWNTO 0) <= ISSUE_FLAG_STATUS;
        DINA => DINA,
        WEA => WEA,
        ADDRB => ADDRB,
-       ENB => ENB,
 	   CHECK_DATA => CHECKER_EN
      );
   PROCESS(CLKA)
@@ -287,13 +283,11 @@ STATUS(7 DOWNTO 0) <= ISSUE_FLAG_STATUS;
 		  IF(RESET_SYNC_R3='1') THEN
             WEA_R  <= (OTHERS=>'0') AFTER 50 ns;
             DINA_R <= (OTHERS=>'0') AFTER 50 ns;
-            ENB_R <= '0' AFTER 50 ns;
           
 
            ELSE
             WEA_R  <= WEA AFTER 50 ns;
             DINA_R <= DINA AFTER 50 ns;
-          ENB_R <= ENB AFTER 50 ns;
 
          END IF;
 	    END IF;
@@ -321,7 +315,6 @@ STATUS(7 DOWNTO 0) <= ISSUE_FLAG_STATUS;
       DINA       => DINA_R,
       CLKA       => CLKA,
       --Port B
-      ENB        => ENB_R, 
       ADDRB      => ADDRB_R,
       DOUTB      => DOUTB,
       CLKB       => CLKB

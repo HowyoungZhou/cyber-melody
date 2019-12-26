@@ -42,7 +42,6 @@ module vram(
   addra,
   dina,
   clkb,
-  enb,
   addrb,
   doutb
 );
@@ -52,7 +51,6 @@ input [0 : 0] wea;
 input [18 : 0] addra;
 input [11 : 0] dina;
 input clkb;
-input enb;
 input [18 : 0] addrb;
 output [11 : 0] doutb;
 
@@ -74,7 +72,7 @@ output [11 : 0] doutb;
     .C_FAMILY("kintex7"),
     .C_HAS_AXI_ID(0),
     .C_HAS_ENA(0),
-    .C_HAS_ENB(1),
+    .C_HAS_ENB(0),
     .C_HAS_INJECTERR(0),
     .C_HAS_MEM_OUTPUT_REGS_A(0),
     .C_HAS_MEM_OUTPUT_REGS_B(0),
@@ -127,7 +125,6 @@ output [11 : 0] doutb;
     .ADDRA(addra),
     .DINA(dina),
     .CLKB(clkb),
-    .ENB(enb),
     .ADDRB(addrb),
     .DOUTB(doutb),
     .RSTA(),
@@ -135,6 +132,7 @@ output [11 : 0] doutb;
     .REGCEA(),
     .DOUTA(),
     .RSTB(),
+    .ENB(),
     .REGCEB(),
     .WEB(),
     .DINB(),

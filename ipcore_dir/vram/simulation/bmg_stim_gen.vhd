@@ -127,7 +127,6 @@ ENTITY BMG_STIM_GEN IS
             DINA : OUT  STD_LOGIC_VECTOR(11 DOWNTO 0) := (OTHERS => '0'); 
             WEA : OUT STD_LOGIC_VECTOR (0 DOWNTO 0) := (OTHERS => '0');
             ADDRB: OUT  STD_LOGIC_VECTOR(18 DOWNTO 0) := (OTHERS => '0');
-            ENB : OUT STD_LOGIC :='0';
 	        CHECK_DATA: OUT STD_LOGIC:='0'
 	  );
 END BMG_STIM_GEN;
@@ -423,7 +422,6 @@ BEGIN
  END PROCESS;
 
  
-   ENB <= DO_READ;
  
    WEA(0) <= DO_WRITE ;
  

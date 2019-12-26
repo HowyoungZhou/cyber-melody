@@ -99,7 +99,6 @@ ENTITY vram_exdes IS
 
   
       --Inputs - Port B
-    ENB            : IN STD_LOGIC;  --opt port
     ADDRB          : IN STD_LOGIC_VECTOR(18 DOWNTO 0);
     DOUTB          : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
     CLKB           : IN STD_LOGIC
@@ -132,7 +131,6 @@ ARCHITECTURE xilinx OF vram_exdes IS
 
   
       --Port B
-    ENB        : IN STD_LOGIC;  --opt port
     ADDRB      : IN STD_LOGIC_VECTOR(18 DOWNTO 0);
     DOUTB      : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
     CLKB       : IN STD_LOGIC
@@ -173,7 +171,6 @@ BEGIN
 
   
       --Port B
-      ENB        => ENB, 
       ADDRB      => ADDRB,
       DOUTB      => DOUTB,
       CLKB       => CLKB_buf

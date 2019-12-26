@@ -17,7 +17,6 @@ quietly WaveActivateNextPane {} 0
       add wave -noupdate /vram_tb/vram_synth_inst/bmg_port/WEA
       add wave -noupdate /vram_tb/vram_synth_inst/bmg_port/CLKB
       add wave -noupdate /vram_tb/vram_synth_inst/bmg_port/ADDRB
-      add wave -noupdate /vram_tb/vram_synth_inst/bmg_port/ENB
       add wave -noupdate /vram_tb/vram_synth_inst/bmg_port/DOUTB
 
 TreeUpdate [SetDefaultTree]

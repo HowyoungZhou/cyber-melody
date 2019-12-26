@@ -55,6 +55,7 @@ module cyber_melody(
         );
 
     piano_keypad piano_keypad (
+        .clk(clk),
         .ready(ready), 
         .keycode(keycode), 
         .note(note), 

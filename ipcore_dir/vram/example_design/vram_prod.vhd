@@ -109,7 +109,7 @@
 --    C_RST_PRIORITY_B            :  CE 
 --    C_RSTRAM_B                  :  0 
 --    C_INITB_VAL                 :  0 
---    C_HAS_ENB                   :  1 
+--    C_HAS_ENB                   :  0 
 --    C_HAS_REGCEB                :  0 
 --    C_USE_BYTE_WEB              :  0 
 --    C_WEB_WIDTH                 :  1 
@@ -243,7 +243,6 @@ ARCHITECTURE xilinx OF vram_prod IS
 
   
       --Port B
-    ENB            : IN STD_LOGIC;  --opt port
     ADDRB          : IN STD_LOGIC_VECTOR(18 DOWNTO 0);
     DOUTB          : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
     CLKB           : IN STD_LOGIC
@@ -267,7 +266,6 @@ BEGIN
       CLKA       => CLKA,
   
       --Port B
-      ENB        => ENB, 
       ADDRB      => ADDRB,
       DOUTB      => DOUTB,
       CLKB       => CLKB

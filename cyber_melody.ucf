@@ -1,3 +1,6 @@
+# dbg
+NET "dbg_ready_led"	LOC = AB26	| IOSTANDARD = LVCMOS33;
+
 NET "clk"					LOC = AC18      | IOSTANDARD = LVCMOS18 ;
 NET "rst_n"					LOC = W13       | IOSTANDARD = LVCMOS18 ;
 NET "clk"		 			TNM_NET = TM_CLK ;

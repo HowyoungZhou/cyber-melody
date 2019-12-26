@@ -35,7 +35,7 @@ module vga(
     wire [11:0] vout_data;
     wire [8:0] row_addr;
     wire [9:0] col_addr;
-    wire [18:0] vout_addr = col_addr * width + row_addr;
+    wire [18:0] vout_addr = row_addr * width + col_addr;
     wire rdn;
 
     vram ram (
@@ -44,7 +44,6 @@ module vga(
         .addra(addr), // input [18 : 0] addra
         .dina(data), // input [11 : 0] dina
         .clkb(vram_clk), // input clkb
-        .enb(~rdn), // input enb
         .addrb(vout_addr), // input [18 : 0] addrb
         .doutb(vout_data) // output [11 : 0] doutb
         );

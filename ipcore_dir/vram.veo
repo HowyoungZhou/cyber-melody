@@ -53,7 +53,6 @@ vram your_instance_name (
   .addra(addra), // input [18 : 0] addra
   .dina(dina), // input [11 : 0] dina
   .clkb(clkb), // input clkb
-  .enb(enb), // input enb
   .addrb(addrb), // input [18 : 0] addrb
   .doutb(doutb) // output [11 : 0] doutb
 );
