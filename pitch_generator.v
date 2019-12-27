@@ -29,7 +29,7 @@ module pitch_generator(
     wire [31:0] period;
     wire en;
 
-    assign en = note == 0;
+    assign en = note != 0;
 
     pitch_period_table pitch_period_table_rom (
         .a(period_addr), // input [7 : 0] a

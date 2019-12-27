@@ -1,9 +1,9 @@
 # Output products list for <pitch_period_table>
+_xmsgs\pn_parser.xmsgs
 pitch_period_table.asy
 pitch_period_table.gise
 pitch_period_table.mif
 pitch_period_table.ngc
-pitch_period_table.sym
 pitch_period_table.v
 pitch_period_table.veo
 pitch_period_table.xco
