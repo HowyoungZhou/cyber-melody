@@ -3,10 +3,17 @@
 module graphics_processor(
     input clk,
     input en,
-    input [50:0] instruction,
+    input opcode,
+    input [9:0] tl_x,
+    input [8:0] tl_y,
+    input [9:0] br_x,
+    input [8:0] br_y,
+    input [11:0] arg,
+    input [11:0] rom_data,
     output reg vram_we, // VRAM write enable
     output reg [18:0] vram_addr, // VRAM address
     output reg [11:0] vram_data, // VRAM data
+    output reg [18:0] rom_addr,
     output reg finish
     );
 
@@ -18,41 +25,59 @@ module graphics_processor(
     parameter draw = 2;
     parameter fin = 3;
 
-    reg [9:0] x;
-    reg [8:0] y;
+    reg [9:0] cur_x;
+    reg [8:0] cur_y;
     reg [1:0] state;
-    wire opcode = instruction[50];
-    wire [9:0] x1 = instruction[49:40];
-    wire [8:0] y1 = instruction[39:31];
-    wire [9:0] x2 = instruction[30:21];
-    wire [8:0] y2 = instruction[20:12];
-    wire [11:0] arg = instruction[11:0];
+    reg [18:0] rom_pointer;
 
-    always@(clk)begin
+    always@(posedge clk)begin
         if(en)begin
             case(state)
                 init:begin
-                    x <= x1;
-                    y <= y1;
-                    finish <= 0;
-                    vram_we <= 0;
+                    cur_x <= tl_x;
+                    cur_y <= tl_y;
+                    rom_pointer <= {7'b0, arg};
                     state <= opcode ? draw : fill;
+                    vram_we <= 0;
                 end
                 fill:begin
-                    vram_addr <= y * width + x;
-                    vram_data <= arg;
                     vram_we <= 1;
+                    vram_addr <= cur_y * width + cur_x;
                     finish <= 0;
-                    if(x < x2) x <= x + 1;
-                    else begin 
-                        x <= x1;
-                        y <= y + 1;
+                    vram_data <= arg;
+                    if(cur_x < br_x) begin
+                        cur_x <= cur_x + 1;
                     end
-                    state <= y < y2 ? fin : fill;
+                    else if(cur_y < br_y) begin 
+                        cur_x <= tl_x;
+                        cur_y <= cur_y + 1;
+                    end
+                    else begin
+                        state <= fin;
+                    end
+                end
+                draw:begin
+                    rom_addr <= rom_pointer;
+                    rom_pointer <= rom_pointer + 1;
+                    vram_data <= rom_data;
+                    vram_we <= 1;
+                    vram_addr <= cur_y * width + cur_x;
+                    finish <= 0;
+                    
+                    if(cur_x < br_x) begin
+                        cur_x <= cur_x + 1;
+                    end
+                    else if(cur_y < br_y) begin 
+                        cur_x <= tl_x;
+                        cur_y <= cur_y + 1;
+                    end
+                    else begin
+                        state <= fin;
+                    end
                 end
                 fin:begin
-                    vram_we <= 0;
                     finish <= 1;
+                    vram_we <= 0;
                 end
             endcase
         end

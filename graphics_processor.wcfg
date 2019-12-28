@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="F:/Coding/cyber_melody/graphics_processor_sim_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="graphics_processor_sim" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="18" />
+   <wave_markers>
+      <marker time="9244330000000" label="" />
+      <marker time="3100330000000" label="" />
+   </wave_markers>
+   <wvobject fp_name="/graphics_processor_sim/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/en" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">en</obj_property>
+      <obj_property name="ObjectShortName">en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/opcode" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">opcode</obj_property>
+      <obj_property name="ObjectShortName">opcode</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/tl_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">tl_x[9:0]</obj_property>
+      <obj_property name="ObjectShortName">tl_x[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/tl_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">tl_y[8:0]</obj_property>
+      <obj_property name="ObjectShortName">tl_y[8:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/br_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">br_x[9:0]</obj_property>
+      <obj_property name="ObjectShortName">br_x[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/br_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">br_y[8:0]</obj_property>
+      <obj_property name="ObjectShortName">br_y[8:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/arg" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">arg[11:0]</obj_property>
+      <obj_property name="ObjectShortName">arg[11:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/rom_addr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rom_addr[18:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_addr[18:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/rom_data" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rom_data[11:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_data[11:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/uut/cur_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cur_x[9:0]</obj_property>
+      <obj_property name="ObjectShortName">cur_x[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/uut/cur_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cur_y[8:0]</obj_property>
+      <obj_property name="ObjectShortName">cur_y[8:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/uut/state" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/uut/rom_pointer" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rom_pointer[18:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_pointer[18:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/vram_we" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">vram_we</obj_property>
+      <obj_property name="ObjectShortName">vram_we</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/vram_addr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">vram_addr[18:0]</obj_property>
+      <obj_property name="ObjectShortName">vram_addr[18:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/vram_data" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">vram_data[11:0]</obj_property>
+      <obj_property name="ObjectShortName">vram_data[11:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/finish" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">finish</obj_property>
+      <obj_property name="ObjectShortName">finish</obj_property>
+   </wvobject>
+</wave_config>
