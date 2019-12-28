@@ -27,6 +27,7 @@ module wave_generator_sim;
 	// Inputs
 	reg clk;
 	reg [31:0] period;
+	reg en;
 
 	// Outputs
 	wire wave;
@@ -35,11 +36,13 @@ module wave_generator_sim;
 	wave_generator uut (
 		.clk(clk), 
 		.period(period), 
-		.wave(wave)
+		.wave(wave),
+		.en(en)
 	);
 
 	initial begin
 		// Initialize Inputs
+		en = 1;
 		clk = 0;
 		period = 3_822_192;
 
@@ -48,7 +51,6 @@ module wave_generator_sim;
         
 		// Add stimulus here
 		forever #10 clk <= ~clk;
-
 	end
       
 endmodule
