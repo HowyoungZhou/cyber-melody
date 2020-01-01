@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="F:/Coding/cyber_melody/music_score_controller_sim_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="music_score_controller_sim" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="8" />
+   <wvobject fp_name="/music_score_controller_sim/note_pointer" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">note_pointer[7:0]</obj_property>
+      <obj_property name="ObjectShortName">note_pointer[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/music_score_controller_sim/cur_length" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cur_length[15:0]</obj_property>
+      <obj_property name="ObjectShortName">cur_length[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/music_score_controller_sim/cur_note" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cur_note[3:0]</obj_property>
+      <obj_property name="ObjectShortName">cur_note[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/music_score_controller_sim/cur_octave" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cur_octave[3:0]</obj_property>
+      <obj_property name="ObjectShortName">cur_octave[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/music_score_controller_sim/clk_1ms" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_1ms</obj_property>
+      <obj_property name="ObjectShortName">clk_1ms</obj_property>
+   </wvobject>
+   <wvobject fp_name="/music_score_controller_sim/en" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">en</obj_property>
+      <obj_property name="ObjectShortName">en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/music_score_controller_sim/rst" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/music_score_controller_sim/uut/orig_length" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">orig_length[15:0]</obj_property>
+      <obj_property name="ObjectShortName">orig_length[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+</wave_config>
