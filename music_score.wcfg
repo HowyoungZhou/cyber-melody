@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="F:/Coding/cyber_melody/music_score_sim_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="music_score_sim" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="6" />
+   <wvobject fp_name="/music_score_sim/spo" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">spo[23:0]</obj_property>
+      <obj_property name="ObjectShortName">spo[23:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/music_score_sim/a" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">a[7:0]</obj_property>
+      <obj_property name="ObjectShortName">a[7:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/music_score_sim/length" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">length[15:0]</obj_property>
+      <obj_property name="ObjectShortName">length[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/music_score_sim/note" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">note[3:0]</obj_property>
+      <obj_property name="ObjectShortName">note[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/music_score_sim/octave" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">octave[3:0]</obj_property>
+      <obj_property name="ObjectShortName">octave[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/music_score_sim/i" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i[31:0]</obj_property>
+   </wvobject>
+</wave_config>

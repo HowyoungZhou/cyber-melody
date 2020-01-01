@@ -40,6 +40,8 @@ module piano_keypad(
     parameter AS = 11;
     parameter B = 12;
 
+    reg last_state = 0;
+
     always@(posedge clk)begin
         if(ready)begin
             case (keycode)
@@ -60,11 +62,12 @@ module piano_keypad(
                 17: note <= AS;
                 14: note <= B;
 
-                15: octave <= (octave + 1 > 9 ? 9 : octave + 1);
-                19: octave <= (octave - 1 < 0 ? 0 : octave - 1);
+                15: if (!last_state) octave <= (octave + 1 > 9 ? 9 : octave + 1);
+                19: if (!last_state) octave <= (octave - 1 < 0 ? 0 : octave - 1);
                 default: note <= rest;
             endcase
         end
         else note <= rest;
+        last_state <= ready;
     end
 endmodule

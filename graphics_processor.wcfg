@@ -15,10 +15,6 @@
       <marker time="9244330000000" label="" />
       <marker time="3100330000000" label="" />
    </wave_markers>
-   <wvobject fp_name="/graphics_processor_sim/clk" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">clk</obj_property>
-      <obj_property name="ObjectShortName">clk</obj_property>
-   </wvobject>
    <wvobject fp_name="/graphics_processor_sim/en" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">en</obj_property>
       <obj_property name="ObjectShortName">en</obj_property>
@@ -80,6 +76,10 @@
       <obj_property name="ElementShortName">rom_pointer[18:0]</obj_property>
       <obj_property name="ObjectShortName">rom_pointer[18:0]</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/graphics_processor_sim/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
    <wvobject fp_name="/graphics_processor_sim/vram_we" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">vram_we</obj_property>
