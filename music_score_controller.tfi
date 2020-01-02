@@ -1,0 +1,15 @@
+
+
+
+// Instantiate the module
+music_score_controller instance_name (
+    .clk_1ms(clk_1ms), 
+    .en(en), 
+    .rst(rst), 
+    .note_pointer(note_pointer), 
+    .cur_length(cur_length), 
+    .cur_note(cur_note), 
+    .cur_octave(cur_octave)
+    );
+
+

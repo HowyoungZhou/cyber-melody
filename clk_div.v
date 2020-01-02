@@ -20,10 +20,21 @@
 //////////////////////////////////////////////////////////////////////////////////
 module clk_div(
     input clk,
-    output reg [31:0] div = 0
+    output reg [31:0] div = 0,
+    output reg clk_1ms = 0
     );
 
+    reg [15:0] clk_1ms_counter = 0;
+
     always@(posedge clk) begin
-		div <= div + 1'b1;
-	end
+      div <= div + 1'b1;
+      if(clk_1ms_counter == 49_999)begin
+        clk_1ms <= ~clk_1ms;
+        clk_1ms_counter <= 0;
+      end
+      else begin
+        clk_1ms_counter <= clk_1ms_counter + 1;
+      end
+    end
+
 endmodule
