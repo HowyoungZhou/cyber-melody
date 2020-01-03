@@ -22,7 +22,7 @@
 *     devices, or systems.  Use in such applications are expressly             *
 *     prohibited.                                                              *
 *                                                                              *
-*     (c) Copyright 1995-2019 Xilinx, Inc.                                     *
+*     (c) Copyright 1995-2020 Xilinx, Inc.                                     *
 *     All rights reserved.                                                     *
 *******************************************************************************/
 // You must compile the wrapper file vram.v when simulating
@@ -93,8 +93,8 @@ output [11 : 0] doutb;
     .C_MEM_TYPE(1),
     .C_MUX_PIPELINE_STAGES(0),
     .C_PRIM_TYPE(1),
-    .C_READ_DEPTH_A(524288),
-    .C_READ_DEPTH_B(524288),
+    .C_READ_DEPTH_A(307200),
+    .C_READ_DEPTH_B(307200),
     .C_READ_WIDTH_A(12),
     .C_READ_WIDTH_B(12),
     .C_RST_PRIORITY_A("CE"),
@@ -111,8 +111,8 @@ output [11 : 0] doutb;
     .C_USE_SOFTECC(0),
     .C_WEA_WIDTH(1),
     .C_WEB_WIDTH(1),
-    .C_WRITE_DEPTH_A(524288),
-    .C_WRITE_DEPTH_B(524288),
+    .C_WRITE_DEPTH_A(307200),
+    .C_WRITE_DEPTH_B(307200),
     .C_WRITE_MODE_A("WRITE_FIRST"),
     .C_WRITE_MODE_B("WRITE_FIRST"),
     .C_WRITE_WIDTH_A(12),

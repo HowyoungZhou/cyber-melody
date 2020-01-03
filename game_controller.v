@@ -23,6 +23,8 @@ module game_controller(
     input repaint_clk,
     input keypress,
     input [4:0] keycode,
+    input [7:0] note_pointer,
+    input [15:0] cur_note_length,
     input gp_finish,
     output reg gp_en,
     output reg gp_opcode,
@@ -34,22 +36,38 @@ module game_controller(
     );
 
     parameter splash = 0;
-    parameter paint_main = 1;
-    parameter main = 2;
-    parameter erase_main = 3;
-    parameter repaint_main = 4;
+    parameter erase_splash = 1;
+    parameter paint_main = 2;
+    parameter main = 3;
+    parameter erase_main = 4;
+    parameter repaint_main = 5;
 
     reg [2:0] state = splash;
 
     always@(posedge clk)begin
         case(state)
-            splash: if(keypress) state <= paint_main;
+            splash: if(keypress) state <= erase_splash;
+            erase_splash:begin
+                if (~gp_finish) begin
+                    gp_opcode <= 0;
+                    gp_tl_x <= 0;
+                    gp_tl_y <= 0;
+                    gp_br_x <= 639;
+                    gp_br_y <= 479;
+                    gp_arg <= 12'hFFF; // White
+                    gp_en <= 1;
+                end
+                else begin
+                    gp_en <= 0;
+                    state <= splash; // TODO
+                end
+            end
             paint_main: begin
                 if (~gp_finish) begin
                     gp_opcode <= 1;
                     gp_tl_x <= 0;
                     gp_tl_y <= 0;
-                    gp_br_x <= 639;
+                    gp_br_x <= 350;
                     gp_br_y <= 479;
                     gp_arg <= 0;
                     gp_en <= 1;
@@ -60,9 +78,7 @@ module game_controller(
                 end
             end
             main:begin
-                // if (repaint_clk) begin
-                //     state <= repaint_main;
-                // end
+                state <= repaint_clk ? repaint_main : main;
             end
             repaint_main:begin
                 

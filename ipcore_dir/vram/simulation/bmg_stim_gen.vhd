@@ -178,7 +178,7 @@ BEGIN
 
   RD_ADDR_GEN_INST:ENTITY work.ADDR_GEN
     GENERIC MAP(
-      C_MAX_DEPTH => 524288 ,
+      C_MAX_DEPTH => 307200 ,
       RST_INC => 1    )
     PORT MAP(
        CLK        => CLKB,
@@ -191,7 +191,7 @@ BEGIN
 
   WR_ADDR_GEN_INST:ENTITY work.ADDR_GEN
     GENERIC MAP( 
-      C_MAX_DEPTH => 524288,
+      C_MAX_DEPTH => 307200,
       RST_INC => 1    )
     PORT MAP(
        CLK        => CLKA,
