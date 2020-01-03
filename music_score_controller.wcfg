@@ -10,7 +10,7 @@
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="8" />
+   <WVObjectSize size="9" />
    <wvobject fp_name="/music_score_controller_sim/note_pointer" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">note_pointer[7:0]</obj_property>
       <obj_property name="ObjectShortName">note_pointer[7:0]</obj_property>
@@ -47,5 +47,9 @@
       <obj_property name="ElementShortName">orig_length[15:0]</obj_property>
       <obj_property name="ObjectShortName">orig_length[15:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/music_score_controller_sim/uut/init" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">init</obj_property>
+      <obj_property name="ObjectShortName">init</obj_property>
    </wvobject>
 </wave_config>

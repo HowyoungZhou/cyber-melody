@@ -31,21 +31,23 @@ module music_score_controller(
     wire [23:0] lenoc;
     wire [15:0] orig_length;
 
+    reg init = 1;
+
     assign orig_length = lenoc[23:8];
     assign cur_note = lenoc[7:4];
     assign cur_octave = lenoc[3:0];
-
-    initial begin
-        #10 cur_length <= orig_length;
-    end
     
     always@(posedge clk_1ms)begin
         if(rst)begin
             note_pointer <= 0;
-            cur_length <= orig_length;
+            init <= 1;
         end
-        else begin
-            if(en)begin
+        else if(en)begin
+            if (init)begin
+                cur_length <= orig_length;
+                init <= 0;
+            end
+            else begin
                 if (cur_length == 1)begin
                     note_pointer <= note_pointer + 1;
                     #10 cur_length <= orig_length;
