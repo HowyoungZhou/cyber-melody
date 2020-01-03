@@ -13,7 +13,7 @@ module graphics_processor(
     output reg vram_we, // VRAM write enable
     output reg [18:0] vram_addr, // VRAM address
     output reg [11:0] vram_data, // VRAM data
-    output reg [18:0] rom_addr,
+    output reg [17:0] rom_addr,
     output reg finish = 0
     );
 
@@ -28,7 +28,7 @@ module graphics_processor(
     reg [9:0] cur_x;
     reg [8:0] cur_y;
     reg [1:0] state;
-    reg [18:0] rom_pointer;
+    reg [17:0] rom_pointer;
 
     always@(posedge clk)begin
         if(en)begin
@@ -36,7 +36,7 @@ module graphics_processor(
                 init:begin
                     cur_x <= tl_x;
                     cur_y <= tl_y;
-                    rom_pointer <= {7'b0, arg};
+                    rom_pointer <= {6'b0, arg};
                     state <= opcode ? draw : fill;
                     vram_we <= 0;
                 end

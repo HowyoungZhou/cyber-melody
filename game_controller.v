@@ -40,8 +40,11 @@ module game_controller(
     parameter paint_main = 2;
     parameter main = 3;
     parameter erase_main = 4;
-    parameter repaint_main = 5;
+    parameter draw_cur_note = 5;
+    parameter draw_notes = 6;
 
+    parameter length_coef = 4;
+    
     reg [2:0] state = splash;
 
     always@(posedge clk)begin
@@ -59,7 +62,7 @@ module game_controller(
                 end
                 else begin
                     gp_en <= 0;
-                    state <= splash; // TODO
+                    state <= paint_main;
                 end
             end
             paint_main: begin
@@ -78,9 +81,24 @@ module game_controller(
                 end
             end
             main:begin
-                state <= repaint_clk ? repaint_main : main;
+                state <= repaint_clk ? erase_main : main;
             end
-            repaint_main:begin
+            erase_main:begin
+                if (~gp_finish) begin
+                    gp_opcode <= 0;
+                    gp_tl_x <= 351;
+                    gp_tl_y <= 0;
+                    gp_br_x <= 639;
+                    gp_br_y <= 479;
+                    gp_arg <= 12'hFFF; // White
+                    gp_en <= 1;
+                end
+                else begin
+                    gp_en <= 0;
+                    state <= draw_cur_note;
+                end
+            end
+            draw_cur_note:begin
                 
             end
         endcase

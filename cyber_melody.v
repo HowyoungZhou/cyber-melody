@@ -143,11 +143,11 @@ module cyber_melody(
         .gp_arg(gp_arg)
         );
 
-    // main_scene_image_rom img_rom (
-    //     .clka(clk), // input clka
-    //     .addra(img_rom_addr), // input [18 : 0] addra
-    //     .douta(img_rom_data) // output [11 : 0] douta
-    //     );
+    image_rom img_rom (
+        .clka(clk), // input clka
+        .addra(img_rom_addr), // input [17 : 0] addra
+        .douta(img_rom_data) // output [11 : 0] douta
+        );
 
     graphics_processor gp (
         .clk(clk), 
