@@ -1,0 +1,22 @@
+
+
+
+// Instantiate the module
+graphics_processor instance_name (
+    .clk(clk), 
+    .en(en), 
+    .opcode(opcode), 
+    .tl_x(tl_x), 
+    .tl_y(tl_y), 
+    .br_x(br_x), 
+    .br_y(br_y), 
+    .arg(arg), 
+    .rom_data(rom_data), 
+    .vram_we(vram_we), 
+    .vram_addr(vram_addr), 
+    .vram_data(vram_data), 
+    .rom_addr(rom_addr), 
+    .finish(finish)
+    );
+
+

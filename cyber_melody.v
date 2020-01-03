@@ -42,6 +42,25 @@ module cyber_melody(
     wire [7:0] note_pointer;
     wire ready, rst, clk_1ms;
 
+    // Graphics Processor
+    wire gp_finish; 
+    wire gp_en; 
+    wire gp_opcode; 
+    wire [9:0] gp_tl_x; 
+    wire [8:0] gp_tl_y; 
+    wire [9:0] gp_br_x; 
+    wire [8:0] gp_br_y; 
+    wire [11:0] gp_arg;
+
+    // VRAM
+    wire vram_we;
+    wire [18:0] vram_addr;
+    wire [11:0] vram_data;
+
+    // Image ROM
+    wire [18:0] img_rom_addr;
+    wire [11:0] img_rom_data;
+
     assign rst = ~rst_n;
 
     clk_div clk_div (.clk(clk), .div(div), .clk_1ms(clk_1ms));
@@ -99,13 +118,51 @@ module cyber_melody(
         .vram_clk(clk), 
         .vga_clk(div[1]), 
         .clrn(rst_n), 
-        .we(1'b0), // TODO: GP will control these signals 
-        .addr(19'b0), 
-        .data(12'b0), 
+        .we(vram_we),
+        .addr(vram_addr), 
+        .data(vram_data), 
         .r(vga_red), 
         .g(vga_green), 
         .b(vga_blue), 
         .hs(vga_h_sync), 
         .vs(vga_v_sync)
+        );
+
+    game_controller game_control (
+        .clk(clk), 
+        .repaint_clk(1'b0), // TODO
+        .keypress(ready), 
+        .keycode(keycode), 
+        .gp_finish(gp_finish), 
+        .gp_en(gp_en), 
+        .gp_opcode(gp_opcode), 
+        .gp_tl_x(gp_tl_x), 
+        .gp_tl_y(gp_tl_y), 
+        .gp_br_x(gp_br_x), 
+        .gp_br_y(gp_br_y), 
+        .gp_arg(gp_arg)
+        );
+
+    main_scene_image_rom img_rom (
+        .clka(clk), // input clka
+        .addra(img_rom_addr), // input [18 : 0] addra
+        .douta(img_rom_data) // output [11 : 0] douta
+        );
+
+    graphics_processor gp (
+        .clk(clk), 
+        .en(gp_en), 
+        .opcode(gp_opcode), 
+        .tl_x(gp_tl_x), 
+        .tl_y(gp_tl_y), 
+        .br_x(gp_br_x), 
+        .br_y(gp_br_y), 
+        .arg(gp_arg), 
+        .rom_data(img_rom_data), 
+        .vram_we(vram_we), 
+        .vram_addr(vram_addr), 
+        .vram_data(vram_data), 
+        .rom_addr(img_rom_addr), 
+        .finish(gp_finish)
         );
 endmodule

@@ -1,0 +1,20 @@
+
+
+
+// Instantiate the module
+game_controller instance_name (
+    .clk(clk), 
+    .repaint_clk(repaint_clk), 
+    .keypress(keypress), 
+    .keycode(keycode), 
+    .gp_finish(gp_finish), 
+    .gp_en(gp_en), 
+    .gp_opcode(gp_opcode), 
+    .gp_tl_x(gp_tl_x), 
+    .gp_tl_y(gp_tl_y), 
+    .gp_br_x(gp_br_x), 
+    .gp_br_y(gp_br_y), 
+    .gp_arg(gp_arg)
+    );
+
+

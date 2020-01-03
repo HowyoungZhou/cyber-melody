@@ -57,15 +57,15 @@
     </file>
     <file xil_pn:name="cyber_melody.v" xil_pn:type="FILE_VERILOG">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="14"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="17"/>
     </file>
     <file xil_pn:name="clk_div.v" xil_pn:type="FILE_VERILOG">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="13"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="16"/>
     </file>
     <file xil_pn:name="graphics_processor.v" xil_pn:type="FILE_VERILOG">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="14"/>
     </file>
     <file xil_pn:name="ipcore_dir/vram.xco" xil_pn:type="FILE_COREGEN">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
@@ -89,7 +89,7 @@
     </file>
     <file xil_pn:name="game_controller.v" xil_pn:type="FILE_VERILOG">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="15"/>
     </file>
     <file xil_pn:name="main_scene_renderer.v" xil_pn:type="FILE_VERILOG">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
@@ -130,7 +130,7 @@
     </file>
     <file xil_pn:name="ipcore_dir/main_scene_image_rom.xco" xil_pn:type="FILE_COREGEN">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="13"/>
     </file>
     <file xil_pn:name="cyber_melody_sim.v" xil_pn:type="FILE_VERILOG">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="0"/>
