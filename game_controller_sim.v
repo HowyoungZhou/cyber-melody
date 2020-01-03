@@ -4,15 +4,15 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   18:41:49 01/03/2020
-// Design Name:   graphics_processor
-// Module Name:   F:/Coding/cyber_melody/graphics_processor_sim.v
+// Create Date:   21:31:17 01/03/2020
+// Design Name:   game_controller
+// Module Name:   F:/Coding/cyber_melody/game_controller_sim.v
 // Project Name:  cyber_melody
 // Target Device:  
 // Tool versions:  
 // Description: 
 //
-// Verilog Test Fixture created by ISE for module: graphics_processor
+// Verilog Test Fixture created by ISE for module: game_controller
 //
 // Dependencies:
 // 
@@ -22,36 +22,53 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-module graphics_processor_sim;
+module game_controller_sim;
 
 	// Inputs
 	reg clk;
-	reg en;
-	reg opcode;
-	reg [9:0] tl_x;
-	reg [8:0] tl_y;
-	reg [9:0] br_x;
-	reg [8:0] br_y;
-	reg [11:0] arg;
+	reg repaint_clk;
+	reg keypress;
+	reg [4:0] keycode;
+	reg [7:0] note_pointer;
+	reg [15:0] cur_note_length;
+	reg gp_finish;
 
 	// Outputs
-	wire vram_we;
-	wire [18:0] vram_addr;
-	wire [11:0] vram_data;
-	wire [17:0] rom_addr;
-	wire [11:0] rom_data;
-	wire finish;
+	wire gp_en;
+	wire gp_opcode;
+	wire [9:0] gp_tl_x;
+	wire [8:0] gp_tl_y;
+	wire [9:0] gp_br_x;
+	wire [8:0] gp_br_y;
+	wire [11:0] gp_arg;
 
 	// Instantiate the Unit Under Test (UUT)
-	graphics_processor uut (
+	game_controller uut (
 		.clk(clk), 
-		.en(en), 
-		.opcode(opcode), 
-		.tl_x(tl_x), 
-		.tl_y(tl_y), 
-		.br_x(br_x), 
-		.br_y(br_y), 
-		.arg(arg), 
+		.repaint_clk(repaint_clk), 
+		.keypress(keypress), 
+		.keycode(keycode), 
+		.note_pointer(note_pointer), 
+		.cur_note_length(cur_note_length), 
+		.gp_finish(gp_finish), 
+		.gp_en(gp_en), 
+		.gp_opcode(gp_opcode), 
+		.gp_tl_x(gp_tl_x), 
+		.gp_tl_y(gp_tl_y), 
+		.gp_br_x(gp_br_x), 
+		.gp_br_y(gp_br_y), 
+		.gp_arg(gp_arg)
+	);
+
+	graphics_processor gp (
+		.clk(clk), 
+		.en(gp_en), 
+		.opcode(gp_opcode), 
+		.tl_x(gp_tl_x), 
+		.tl_y(gp_tl_y), 
+		.br_x(gp_br_x), 
+		.br_y(gp_br_y), 
+		.arg(gp_arg), 
 		.rom_data(rom_data), 
 		.vram_we(vram_we), 
 		.vram_addr(vram_addr), 
@@ -79,36 +96,18 @@ module graphics_processor_sim;
 	initial begin
 		// Initialize Inputs
 		clk = 0;
-		en = 0;
-		opcode = 0;
-		tl_x = 0;
-		tl_y = 0;
-		br_x = 0;
-		br_y = 0;
-		arg = 0;
+		repaint_clk = 0;
+		keypress = 0;
+		keycode = 0;
+		note_pointer = 0;
+		cur_note_length = 0;
+		gp_finish = 0;
 
 		// Wait 100 ns for global reset to finish
 		#100;
         
 		// Add stimulus here
-		fork
-			forever #10 clk <= ~clk;
-			begin
-				opcode = 0;
-				tl_x = 10;
-				tl_y = 10;
-				br_x = 30;
-				br_y = 30;
-				arg = 12'h555;
-				#100
-				en = 1;
-				#18000
-				en = 0;
-				#100
-				opcode = 1;
-				en = 1;
-			end
-		join
+
 	end
       
 endmodule

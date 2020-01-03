@@ -28,8 +28,8 @@ module cyber_melody_sim;
 	reg clk;
 	reg rst_n;
 	reg [15:0] raw_switches;
-	reg [3:0] btn_col = 0;
-	reg [4:0] btn_row = 0;
+	reg [3:0] btn_col = 4'b1111;
+	reg [4:0] btn_row = 5'b11111;
 
 	// Outputs
 	wire [3:0] vga_red;
@@ -74,8 +74,12 @@ module cyber_melody_sim;
 		fork
 			forever #5 clk = ~clk;
 			begin
-				raw_switches[0] = 1;
-				raw_switches[1] = 1;
+				#2000;
+				btn_row = 5'b11110;
+				btn_col = 4'b1101;
+				// #2000;
+				// btn_row = 5'b11111;
+				// btn_col = 4'b1111;
 			end
 		join
 	end

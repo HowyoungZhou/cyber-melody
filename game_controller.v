@@ -44,7 +44,7 @@ module game_controller(
     parameter draw_notes = 6;
 
     parameter length_coef = 4;
-    
+
     reg [2:0] state = splash;
 
     always@(posedge clk)begin
@@ -104,3 +104,5 @@ module game_controller(
         endcase
     end
 endmodule
+
+// module bar_y_lut()

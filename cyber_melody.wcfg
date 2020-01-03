@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="F:/Coding/cyber_melody/cyber_melody_sim_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="cyber_melody_sim" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="45" />
+   <wvobject fp_name="/cyber_melody_sim/vga_red" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">vga_red[3:0]</obj_property>
+      <obj_property name="ObjectShortName">vga_red[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/vga_green" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">vga_green[3:0]</obj_property>
+      <obj_property name="ObjectShortName">vga_green[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/vga_blue" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">vga_blue[3:0]</obj_property>
+      <obj_property name="ObjectShortName">vga_blue[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/vga_h_sync" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">vga_h_sync</obj_property>
+      <obj_property name="ObjectShortName">vga_h_sync</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/vga_v_sync" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">vga_v_sync</obj_property>
+      <obj_property name="ObjectShortName">vga_v_sync</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/buzzer" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">buzzer</obj_property>
+      <obj_property name="ObjectShortName">buzzer</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/btn_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">btn_y[3:0]</obj_property>
+      <obj_property name="ObjectShortName">btn_y[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/btn_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">btn_x[4:0]</obj_property>
+      <obj_property name="ObjectShortName">btn_x[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/rst_n" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst_n</obj_property>
+      <obj_property name="ObjectShortName">rst_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/raw_switches" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">raw_switches[15:0]</obj_property>
+      <obj_property name="ObjectShortName">raw_switches[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/btn_col" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">btn_col[3:0]</obj_property>
+      <obj_property name="ObjectShortName">btn_col[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/btn_row" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">btn_row[4:0]</obj_property>
+      <obj_property name="ObjectShortName">btn_row[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/game_control/repaint_clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">repaint_clk</obj_property>
+      <obj_property name="ObjectShortName">repaint_clk</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/game_control/keypress" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">keypress</obj_property>
+      <obj_property name="ObjectShortName">keypress</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/game_control/keycode" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">keycode[4:0]</obj_property>
+      <obj_property name="ObjectShortName">keycode[4:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/game_control/note_pointer" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">note_pointer[7:0]</obj_property>
+      <obj_property name="ObjectShortName">note_pointer[7:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/game_control/cur_note_length" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cur_note_length[15:0]</obj_property>
+      <obj_property name="ObjectShortName">cur_note_length[15:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/game_control/gp_finish" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">gp_finish</obj_property>
+      <obj_property name="ObjectShortName">gp_finish</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/game_control/gp_en" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">gp_en</obj_property>
+      <obj_property name="ObjectShortName">gp_en</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/game_control/gp_opcode" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">gp_opcode</obj_property>
+      <obj_property name="ObjectShortName">gp_opcode</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/game_control/gp_tl_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">gp_tl_x[9:0]</obj_property>
+      <obj_property name="ObjectShortName">gp_tl_x[9:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/game_control/gp_tl_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">gp_tl_y[8:0]</obj_property>
+      <obj_property name="ObjectShortName">gp_tl_y[8:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/game_control/gp_br_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">gp_br_x[9:0]</obj_property>
+      <obj_property name="ObjectShortName">gp_br_x[9:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/game_control/gp_br_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">gp_br_y[8:0]</obj_property>
+      <obj_property name="ObjectShortName">gp_br_y[8:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/game_control/gp_arg" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">gp_arg[11:0]</obj_property>
+      <obj_property name="ObjectShortName">gp_arg[11:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/game_control/state" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">state[2:0]</obj_property>
+      <obj_property name="ObjectShortName">state[2:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/en" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">en</obj_property>
+      <obj_property name="ObjectShortName">en</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/opcode" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">opcode</obj_property>
+      <obj_property name="ObjectShortName">opcode</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/tl_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">tl_x[9:0]</obj_property>
+      <obj_property name="ObjectShortName">tl_x[9:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/tl_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">tl_y[8:0]</obj_property>
+      <obj_property name="ObjectShortName">tl_y[8:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/br_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">br_x[9:0]</obj_property>
+      <obj_property name="ObjectShortName">br_x[9:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/br_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">br_y[8:0]</obj_property>
+      <obj_property name="ObjectShortName">br_y[8:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/arg" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">arg[11:0]</obj_property>
+      <obj_property name="ObjectShortName">arg[11:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/rom_data" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rom_data[11:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_data[11:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/vram_we" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">vram_we</obj_property>
+      <obj_property name="ObjectShortName">vram_we</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/vram_data" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">vram_data[11:0]</obj_property>
+      <obj_property name="ObjectShortName">vram_data[11:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/finish" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">finish</obj_property>
+      <obj_property name="ObjectShortName">finish</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/vram_addr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">vram_addr[18:0]</obj_property>
+      <obj_property name="ObjectShortName">vram_addr[18:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/rom_addr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rom_addr[17:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_addr[17:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/cur_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cur_x[9:0]</obj_property>
+      <obj_property name="ObjectShortName">cur_x[9:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/cur_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cur_y[8:0]</obj_property>
+      <obj_property name="ObjectShortName">cur_y[8:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/state" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">state[2:0]</obj_property>
+      <obj_property name="ObjectShortName">state[2:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/fill" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">fill</obj_property>
+      <obj_property name="ObjectShortName">fill</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/gp/draw" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">draw</obj_property>
+      <obj_property name="ObjectShortName">draw</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+   </wvobject>
+</wave_config>

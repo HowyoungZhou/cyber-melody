@@ -49,8 +49,8 @@
       <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/graphics_processor_sim/rom_addr" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">rom_addr[18:0]</obj_property>
-      <obj_property name="ObjectShortName">rom_addr[18:0]</obj_property>
+      <obj_property name="ElementShortName">rom_addr[17:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_addr[17:0]</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/graphics_processor_sim/rom_data" type="array" db_ref_id="1">
@@ -69,12 +69,12 @@
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/graphics_processor_sim/uut/state" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">state[1:0]</obj_property>
-      <obj_property name="ObjectShortName">state[1:0]</obj_property>
+      <obj_property name="ElementShortName">state[2:0]</obj_property>
+      <obj_property name="ObjectShortName">state[2:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/graphics_processor_sim/uut/rom_pointer" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">rom_pointer[18:0]</obj_property>
-      <obj_property name="ObjectShortName">rom_pointer[18:0]</obj_property>
+      <obj_property name="ElementShortName">rom_pointer[17:0]</obj_property>
+      <obj_property name="ObjectShortName">rom_pointer[17:0]</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/graphics_processor_sim/clk" type="logic" db_ref_id="1">
