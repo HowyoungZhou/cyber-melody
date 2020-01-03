@@ -14,7 +14,7 @@ module graphics_processor(
     output reg [18:0] vram_addr, // VRAM address
     output reg [11:0] vram_data, // VRAM data
     output reg [18:0] rom_addr,
-    output reg finish
+    output reg finish = 0
     );
 
     parameter width = 640;

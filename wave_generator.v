@@ -25,7 +25,7 @@ module wave_generator(
     output wave
     );
 
-    parameter clk_period = 20;
+    parameter clk_period = 10;
 
     reg [31:0] counter = 0;
 

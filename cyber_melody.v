@@ -29,7 +29,8 @@ module cyber_melody(
     output [3:0] vga_blue,
     output vga_h_sync,
     output vga_v_sync,
-    output buzzer
+    output buzzer,
+    output ready
     );
 
     wire [31:0] div;

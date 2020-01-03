@@ -73,6 +73,7 @@ isim
 *_isim_beh.*
 isim*
 xilinxsim.ini
+*.wdb
 
 # Python
 # Byte-compiled / optimized / DLL files

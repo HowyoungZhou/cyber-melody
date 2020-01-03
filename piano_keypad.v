@@ -43,31 +43,33 @@ module piano_keypad(
     reg last_state = 0;
 
     always@(posedge clk)begin
+        last_state <= ready;
         if(ready)begin
             case (keycode)
-                4: note <= C;
-                8: note <= CS;
+                5'd4: note <= C;
+                5'd8: note <= CS;
 
-                5: note <= D;
-                9: note <= DS;
+                5'd5: note <= D;
+                5'd9: note <= DS;
 
-                6: note <= E;
-                7: note <= F;
-                11: note <= FS;
+                5'd6: note <= E;
+                5'd7: note <= F;
+                5'd11: note <= FS;
 
-                12: note <= G;
-                16: note <= GS;
+                5'd12: note <= G;
+                5'd16: note <= GS;
                 
-                13: note <= A;
-                17: note <= AS;
-                14: note <= B;
+                5'd13: note <= A;
+                5'd17: note <= AS;
+                5'd14: note <= B;
 
-                15: if (!last_state) octave <= (octave + 1 > 9 ? 9 : octave + 1);
-                19: if (!last_state) octave <= (octave - 1 < 0 ? 0 : octave - 1);
+                5'd15: if (!last_state) octave <= (octave + 1 > 9 ? 9 : octave + 1);
+                5'd19: if (!last_state) octave <= (octave - 1 < 0 ? 0 : octave - 1);
                 default: note <= rest;
             endcase
         end
-        else note <= rest;
-        last_state <= ready;
+        else begin
+            note <= rest;
+        end
     end
 endmodule

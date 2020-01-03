@@ -1,3 +1,5 @@
+NET "ready"	LOC = W23	| IOSTANDARD = LVCMOS33;
+
 NET "clk"					LOC = AC18      | IOSTANDARD = LVCMOS18 ;
 NET "rst_n"					LOC = W13       | IOSTANDARD = LVCMOS18 ;
 NET "clk"		 			TNM_NET = TM_CLK ;
@@ -20,15 +22,15 @@ TIMESPEC TS_CLK_100M 	 	= PERIOD "TM_CLK"       10 ns HIGH 50%;
 # NET "tri_led1_g_n"			LOC = U25       | IOSTANDARD = LVCMOS33 ;
 # NET "tri_led1_b_n"			LOC = V23       | IOSTANDARD = LVCMOS33 ;
 
-NET "btn_x[0]"				LOC = V17       | IOSTANDARD = LVCMOS18 ;
-NET "btn_x[1]"				LOC = W18       | IOSTANDARD = LVCMOS18 ;
-NET "btn_x[2]"				LOC = W19       | IOSTANDARD = LVCMOS18 ;
-NET "btn_x[3]"				LOC = W15       | IOSTANDARD = LVCMOS18 ;
-NET "btn_x[4]"				LOC = W16       | IOSTANDARD = LVCMOS18 ;
-NET "btn_y[0]"				LOC = V18       | IOSTANDARD = LVCMOS18 ;
-NET "btn_y[1]"				LOC = V19       | IOSTANDARD = LVCMOS18 ;
-NET "btn_y[2]"				LOC = V14       | IOSTANDARD = LVCMOS18 ;
-NET "btn_y[3]"				LOC = W14       | IOSTANDARD = LVCMOS18 ;
+NET "btn_x[0]"				LOC = V17       | IOSTANDARD = LVCMOS18 | PULLUP;
+NET "btn_x[1]"				LOC = W18       | IOSTANDARD = LVCMOS18 | PULLUP;
+NET "btn_x[2]"				LOC = W19       | IOSTANDARD = LVCMOS18 | PULLUP;
+NET "btn_x[3]"				LOC = W15       | IOSTANDARD = LVCMOS18 | PULLUP;
+NET "btn_x[4]"				LOC = W16       | IOSTANDARD = LVCMOS18 | PULLUP;
+NET "btn_y[0]"				LOC = V18       | IOSTANDARD = LVCMOS18 | PULLUP;
+NET "btn_y[1]"				LOC = V19       | IOSTANDARD = LVCMOS18 | PULLUP;
+NET "btn_y[2]"				LOC = V14       | IOSTANDARD = LVCMOS18 | PULLUP;
+NET "btn_y[3]"				LOC = W14       | IOSTANDARD = LVCMOS18 | PULLUP;
 
 NET "buzzer"		LOC = AF25	| IOSTANDARD = LVCMOS33;
 
