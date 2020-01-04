@@ -7,6 +7,9 @@ game_controller instance_name (
     .repaint_clk(repaint_clk), 
     .keypress(keypress), 
     .keycode(keycode), 
+    .note_pointer(note_pointer), 
+    .cur_note_length(cur_note_length), 
+    .keypad_octave(keypad_octave), 
     .gp_finish(gp_finish), 
     .gp_en(gp_en), 
     .gp_opcode(gp_opcode), 
@@ -14,7 +17,8 @@ game_controller instance_name (
     .gp_tl_y(gp_tl_y), 
     .gp_br_x(gp_br_x), 
     .gp_br_y(gp_br_y), 
-    .gp_arg(gp_arg)
+    .gp_arg(gp_arg), 
+    .music_score_con_en(music_score_con_en)
     );
 
 

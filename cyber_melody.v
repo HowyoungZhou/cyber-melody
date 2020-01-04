@@ -34,6 +34,7 @@ module cyber_melody(
     );
 
     wire [31:0] div;
+    wire music_score_con_en;
     wire [3:0] cur_octave, keypad_octave, octave;
     wire [3:0] cur_note, keypad_note, note;
     wire [15:0] cur_length;
@@ -58,7 +59,7 @@ module cyber_melody(
     wire [11:0] vram_data;
 
     // Image ROM
-    wire [18:0] img_rom_addr;
+    wire [17:0] img_rom_addr;
     wire [11:0] img_rom_data;
 
     assign rst = ~rst_n;
@@ -80,16 +81,6 @@ module cyber_melody(
         .col(btn_x), 
         .ready(ready),
         .keycode(keycode)
-        );
-
-    music_score_controller music_sco_control (
-        .clk_1ms(clk_1ms), 
-        .en(switches[1]), // TODO: change en signal
-        .rst(rst), 
-        .note_pointer(note_pointer), 
-        .cur_length(cur_length), 
-        .cur_note(cur_note), 
-        .cur_octave(cur_octave)
         );
 
     piano_keypad piano_keypad (
@@ -128,11 +119,24 @@ module cyber_melody(
         .vs(vga_v_sync)
         );
 
+    music_score_controller music_sco_control (
+        .clk_1ms(clk_1ms), 
+        .en(music_score_con_en),
+        .rst(rst), 
+        .note_pointer(note_pointer), 
+        .cur_length(cur_length), 
+        .cur_note(cur_note), 
+        .cur_octave(cur_octave)
+        );
+
     game_controller game_control (
         .clk(clk), 
-        .repaint_clk(1'b0), // TODO
+        .repaint_clk(div[20]),
         .keypress(ready), 
-        .keycode(keycode), 
+        .keycode(keycode),
+        .note_pointer(note_pointer),
+        .cur_note_length(cur_length),
+        .keypad_octave(keypad_octave),
         .gp_finish(gp_finish), 
         .gp_en(gp_en), 
         .gp_opcode(gp_opcode), 
@@ -140,7 +144,8 @@ module cyber_melody(
         .gp_tl_y(gp_tl_y), 
         .gp_br_x(gp_br_x), 
         .gp_br_y(gp_br_y), 
-        .gp_arg(gp_arg)
+        .gp_arg(gp_arg),
+        .music_score_con_en(music_score_con_en)
         );
 
     image_rom img_rom (
