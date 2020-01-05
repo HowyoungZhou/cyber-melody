@@ -40,17 +40,24 @@ module game_controller(
     parameter erase_splash = 1;
     parameter paint_main = 2;
     parameter main = 3;
-    parameter erase_main = 4;
-    parameter pre_draw_cur_note = 5;
-    parameter draw_cur_note = 6;
-    parameter pre_draw_notes = 7;
-    parameter draw_notes = 8;
+    parameter pre_clear_cur_note_top = 4 ;
+    parameter clear_cur_note_top = 5 ;
+    parameter pre_clear_cur_note_bottom = 6 ;
+    parameter clear_cur_note_bottom = 7 ;
+    parameter pre_draw_cur_note = 8 ;
+    parameter draw_cur_note = 9 ;
+    parameter pre_clear_notes_top = 10 ;
+    parameter clear_notes_top = 11 ;
+    parameter pre_clear_notes_bottom = 12 ;
+    parameter clear_notes_bottom = 13 ;
+    parameter pre_draw_notes = 14 ;
+    parameter draw_notes = 15 ;
 
     parameter length_coef = 4;
     parameter bar_height = 15;
     parameter repaint_freq = 100;
 
-    reg [3:0] state = splash;
+    reg [4:0] state = splash;
     reg [9:0] cur_x = 352;
     reg [7:0] cur_np;
     reg timer_en = 0;
@@ -114,25 +121,42 @@ module game_controller(
             main:begin
                 timer_en <= 1;
                 if(repaint_sig)begin
-                    state <= erase_main;
                     timer_en <= 0;
-                end
-            end
-            erase_main:begin
-                if (~gp_finish) begin
-                    gp_opcode <= 0;
-                    gp_tl_x <= 351;
-                    gp_tl_y <= 0;
-                    gp_br_x <= 639;
-                    gp_br_y <= 479;
-                    gp_arg <= 12'hFFF; // White
-                    gp_en <= 1;
-                end
-                else begin
-                    gp_en <= 0;
                     // Sample signals to prevent noise
                     cur_np <= note_pointer;
                     cur_note_length_sample <= cur_note_length;
+                    state <= pre_clear_cur_note_top;
+                end
+            end
+            pre_clear_cur_note_top:begin
+                gp_opcode <= 0;
+                gp_tl_x <= 351;
+                gp_tl_y <= 0;
+                gp_br_x <= cur_note_br_x >= 639 ? 639 : cur_note_br_x;
+                gp_br_y <= tl_y - 1;
+                gp_arg <= 12'hFFF;
+                gp_en <= 1;
+                state <= clear_cur_note_top;
+            end
+            clear_cur_note_top:begin
+                if(gp_finish)begin
+                    gp_en <= 0;
+                    state <= pre_clear_cur_note_bottom;
+                end
+            end
+            pre_clear_cur_note_bottom:begin
+                gp_opcode <= 0;
+                gp_tl_x <= 351;
+                gp_tl_y <= br_y + 1;
+                gp_br_x <= cur_note_br_x >= 639 ? 639 : cur_note_br_x;
+                gp_br_y <= 479;
+                gp_arg <= 12'hFFF;
+                gp_en <= 1;
+                state <= clear_cur_note_bottom;
+            end
+            clear_cur_note_bottom:begin
+                if(gp_finish)begin
+                    gp_en <= 0;
                     state <= pre_draw_cur_note;
                 end
             end
@@ -151,52 +175,66 @@ module game_controller(
                     gp_en <= 0;
                     cur_x <= gp_br_x;
                     cur_np <= cur_np + 1;
-                    state <= pre_draw_notes;
+                    state <= pre_clear_notes_top;
                 end
             end
-            pre_draw_notes:begin
+            // Draw notes after the current note
+            pre_clear_notes_top:begin
                 if (gp_br_x + 1 <= 639) begin
                     gp_opcode <= 0;
                     gp_tl_x <= cur_x + 1;
-                    gp_tl_y <= tl_y;
+                    gp_tl_y <= 0;
                     gp_br_x <= notes_br_x >= 639 ? 639 : notes_br_x;
-                    gp_br_y <= br_y;
-                    gp_arg <= color;
+                    gp_br_y <= tl_y - 1;
+                    gp_arg <= 12'hFFF;
                     gp_en <= 1;
-                    state <= draw_notes;
+                    state <= clear_notes_top;
                 end
                 else begin
                     gp_en <= 0;
                     state <= main;
                 end
             end
+            clear_notes_top:begin
+                if(gp_finish)begin
+                    gp_en <= 0;
+                    state <= pre_clear_notes_bottom;
+                end
+            end
+            pre_clear_notes_bottom:begin
+                gp_opcode <= 0;
+                gp_tl_x <= cur_x + 1;
+                gp_tl_y <= br_y + 1;
+                gp_br_x <= notes_br_x >= 639 ? 639 : notes_br_x;
+                gp_br_y <= 479;
+                gp_arg <= 12'hFFF;
+                gp_en <= 1;
+                state <= clear_notes_bottom;
+            end
+            clear_notes_bottom:begin
+                if(gp_finish)begin
+                    gp_en <= 0;
+                    state <= pre_draw_notes;
+                end
+            end
+            pre_draw_notes:begin
+                gp_opcode <= 0;
+                gp_tl_x <= cur_x + 1;
+                gp_tl_y <= tl_y;
+                gp_br_x <= notes_br_x >= 639 ? 639 : notes_br_x;
+                gp_br_y <= br_y;
+                gp_arg <= color;
+                gp_en <= 1;
+                state <= draw_notes;
+            end
             draw_notes:begin
                 if(gp_finish)begin
                     gp_en <= 0;
                     cur_np <= cur_np + 1;
                     cur_x <= gp_br_x;
-                    state <= pre_draw_notes;
+                    state <= pre_clear_notes_top;
                 end
             end
-            // draw_notes:begin
-            //     if (gp_finish) begin
-            //         if (tl_y <= 639) begin
-            //             cur_np <= cur_np + 1;
-            //             gp_en <= 0;
-            //             gp_tl_x <= gp_br_x + 1;
-            //             gp_tl_y <= tl_y;
-            //             gp_br_x <= gp_br_x + note_length;
-            //             gp_br_y <= (br_y <= 639 ? br_y : 639);
-            //             gp_arg <= color;
-            //             gp_en <= 1;
-            //             state <= draw_notes;
-            //         end
-            //         else begin
-            //             gp_en <= 0;
-            //             state <= main;
-            //         end
-            //     end
-            // end
         endcase
     end
 
