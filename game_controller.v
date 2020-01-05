@@ -67,11 +67,15 @@ module game_controller(
     wire repaint_sig;
 
     wire [7:0] music_score_addr;
+    wire [9:0] cur_note_br_x;
+    wire [9:0] notes_br_x;
 
     assign note_length = lenoc[23:8];
     assign note = lenoc[7:4];
     assign octave = lenoc[3:0];
-    assign music_score_addr = ((state == pre_draw_cur_note || state == draw_cur_note) ? note_pointer : cur_np);
+
+    assign cur_note_br_x = 351 + cur_note_length_sample / length_coef - 1;
+    assign notes_br_x = cur_x + note_length / length_coef;
 
     always@(posedge clk)begin
         case(state)
@@ -136,7 +140,7 @@ module game_controller(
                 gp_opcode <= 0;
                 gp_tl_x <= 351;
                 gp_tl_y <= tl_y;
-                gp_br_x <= (351 + cur_note_length_sample / length_coef - 1) >= 639 ? 639 : (351 + cur_note_length_sample / length_coef - 1);
+                gp_br_x <= cur_note_br_x >= 639 ? 639 : cur_note_br_x;
                 gp_br_y <= br_y;
                 gp_arg <= color;
                 gp_en <= 1;
@@ -155,7 +159,7 @@ module game_controller(
                     gp_opcode <= 0;
                     gp_tl_x <= cur_x + 1;
                     gp_tl_y <= tl_y;
-                    gp_br_x <= (cur_x + note_length / length_coef) >= 639 ? 639 : (cur_x + note_length / length_coef);
+                    gp_br_x <= notes_br_x >= 639 ? 639 : notes_br_x;
                     gp_br_y <= br_y;
                     gp_arg <= color;
                     gp_en <= 1;
