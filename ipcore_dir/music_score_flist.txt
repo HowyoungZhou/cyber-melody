@@ -4,7 +4,6 @@ music_score.asy
 music_score.gise
 music_score.mif
 music_score.ngc
-music_score.sym
 music_score.v
 music_score.veo
 music_score.xco

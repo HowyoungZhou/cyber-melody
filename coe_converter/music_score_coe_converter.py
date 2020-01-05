@@ -36,7 +36,7 @@ notes_map = {
 }
 
 notes = ['Rest', 'C', 'C#', 'D', 'D#', 'E',
-         'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+         'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', '(invalid)', '(invalid)', '(EOF)']
 
 
 def lenoc_generator():
@@ -70,10 +70,10 @@ def parse_note(item: str, base_num: int, base_note: int):
         if state == 'prefix':
             if ch == '.':
                 note_code += 12
-            elif ch.isdigit() or ch == '#':
+            elif ch.isdigit() or ch == '#' or ch == 'E':
                 state = 'note'
         if state == 'note':
-            if ch.isdigit() or ch == '#':
+            if ch.isdigit() or ch == '#' or ch == 'E':
                 note_str += ch
             else:
                 state = 'postfix'
@@ -90,6 +90,8 @@ def parse_note(item: str, base_num: int, base_note: int):
     length *= dotted_result
     if note_str == '0':
         return (length, 0, 0)
+    if note_str == 'E':
+        return (0, 15, 0)
     note_code += num_notes_map[note_str]-base_num
     octave = note_code // 12
     note = note_code % 12

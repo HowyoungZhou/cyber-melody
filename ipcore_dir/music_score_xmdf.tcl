@@ -155,10 +155,6 @@ utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path music_score.
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type ngc
 incr fcount
 
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path music_score.sym
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type symbol
-incr fcount
-
 utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path music_score.v
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type verilog
 incr fcount

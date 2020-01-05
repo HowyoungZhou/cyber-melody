@@ -28,6 +28,8 @@ module music_score_controller(
     output [3:0] cur_octave
     );
 
+    parameter eof = 15;
+
     wire [23:0] lenoc;
     wire [15:0] orig_length;
 
@@ -50,16 +52,18 @@ module music_score_controller(
                 init <= 0;
             end
             else begin
-                if (cur_length == 2)begin
-                    cur_length <= cur_length - 1;
-                    music_score_addr <= music_score_addr + 1;
-                end 
-                else if (cur_length == 1)begin
-                    cur_length <= orig_length;
-                    note_pointer <= music_score_addr;
-                end
-                else begin
-                    cur_length <= cur_length - 1;
+                if (cur_note != eof) begin
+                    if (cur_length == 2)begin
+                        cur_length <= cur_length - 1;
+                        music_score_addr <= music_score_addr + 1;
+                    end 
+                    else if (cur_length == 1)begin
+                        cur_length <= orig_length;
+                        note_pointer <= music_score_addr;
+                    end
+                    else begin
+                        cur_length <= cur_length - 1;
+                    end
                 end
             end 
         end

@@ -72,7 +72,7 @@ module cyber_melody_sim;
         
 		// Add stimulus here
 		fork
-			forever #5 clk = ~clk;
+			forever #1 clk = ~clk;
 			begin
 				#2000;
 				btn_row = 5'b11110;

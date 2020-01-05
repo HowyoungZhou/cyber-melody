@@ -10,7 +10,7 @@
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="63" />
+   <WVObjectSize size="62" />
    <wvobject fp_name="/cyber_melody_sim/vga_red" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">vga_red[3:0]</obj_property>
       <obj_property name="ObjectShortName">vga_red[3:0]</obj_property>
@@ -284,11 +284,6 @@
       <obj_property name="CustomSignalColor">#ff00ff</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/cyber_melody_sim/uut/game_control/cur_x" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">cur_x[9:0]</obj_property>
-      <obj_property name="ObjectShortName">cur_x[9:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
    <wvobject fp_name="/cyber_melody_sim/uut/game_control/gp_tl_y" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">gp_tl_y[8:0]</obj_property>
       <obj_property name="ObjectShortName">gp_tl_y[8:0]</obj_property>
@@ -301,6 +296,11 @@
       <obj_property name="ObjectShortName">gp_br_y[8:0]</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
       <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cyber_melody_sim/uut/game_control/cur_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cur_x[9:0]</obj_property>
+      <obj_property name="ObjectShortName">cur_x[9:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/cyber_melody_sim/uut/game_control/gp_arg" type="array" db_ref_id="1">
@@ -317,8 +317,8 @@
       <obj_property name="CustomSignalColor">#ff00ff</obj_property>
    </wvobject>
    <wvobject fp_name="/cyber_melody_sim/uut/game_control/state" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">state[3:0]</obj_property>
-      <obj_property name="ObjectShortName">state[3:0]</obj_property>
+      <obj_property name="ElementShortName">state[4:0]</obj_property>
+      <obj_property name="ObjectShortName">state[4:0]</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
       <obj_property name="CustomSignalColor">#ff00ff</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
@@ -375,10 +375,5 @@
       <obj_property name="UseCustomSignalColor">true</obj_property>
       <obj_property name="CustomSignalColor">#ffff00</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/cyber_melody_sim/uut/game_control/music_score_addr" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">music_score_addr[7:0]</obj_property>
-      <obj_property name="ObjectShortName">music_score_addr[7:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
 </wave_config>

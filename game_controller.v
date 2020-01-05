@@ -56,6 +56,7 @@ module game_controller(
     parameter length_coef = 4;
     parameter bar_height = 15;
     parameter repaint_freq = 100;
+    parameter eof = 15;
 
     reg [4:0] state = splash;
     reg [9:0] cur_x = 352;
@@ -74,8 +75,8 @@ module game_controller(
     wire repaint_sig;
 
     wire [7:0] music_score_addr;
-    wire [9:0] cur_note_br_x;
-    wire [9:0] notes_br_x;
+    wire [31:0] cur_note_br_x;
+    wire [31:0] notes_br_x;
 
     assign note_length = lenoc[23:8];
     assign note = lenoc[7:4];
@@ -129,14 +130,20 @@ module game_controller(
                 end
             end
             pre_clear_cur_note_top:begin
-                gp_opcode <= 0;
-                gp_tl_x <= 351;
-                gp_tl_y <= 0;
-                gp_br_x <= cur_note_br_x >= 639 ? 639 : cur_note_br_x;
-                gp_br_y <= tl_y - 1;
-                gp_arg <= 12'hFFF;
-                gp_en <= 1;
-                state <= clear_cur_note_top;
+                if(note == eof)begin
+                    state <= main;
+                end
+                else begin
+                    gp_opcode <= 0;
+                    gp_tl_x <= 351;
+                    gp_tl_y <= 0;
+                    gp_br_x <= cur_note_br_x >= 639 ? 639 : cur_note_br_x;
+                    gp_br_y <= tl_y - 1;
+                    gp_arg <= 12'hFFF;
+                    gp_en <= 1;
+                    state <= clear_cur_note_top;
+                end
+                
             end
             clear_cur_note_top:begin
                 if(gp_finish)begin
@@ -180,7 +187,7 @@ module game_controller(
             end
             // Draw notes after the current note
             pre_clear_notes_top:begin
-                if (gp_br_x + 1 <= 639) begin
+                if (cur_x + 1 <= 639) begin
                     gp_opcode <= 0;
                     gp_tl_x <= cur_x + 1;
                     gp_tl_y <= 0;
