@@ -20,7 +20,6 @@
 //////////////////////////////////////////////////////////////////////////////////
 module game_controller(
     input clk,
-    input repaint_clk,
     input keypress,
     input [4:0] keycode,
     input [7:0] note_pointer,
@@ -49,12 +48,13 @@ module game_controller(
 
     parameter length_coef = 4;
     parameter bar_height = 15;
-    parameter repaint_freq = 50;
+    parameter repaint_freq = 100;
 
     reg [3:0] state = splash;
     reg [9:0] cur_x = 352;
     reg [7:0] cur_np;
     reg timer_en = 0;
+    reg [15:0] cur_note_length_sample;
 
     wire [8:0] tl_y;
     wire [8:0] br_y;
@@ -66,9 +66,12 @@ module game_controller(
     wire [3:0] octave;
     wire repaint_sig;
 
+    wire [7:0] music_score_addr;
+
     assign note_length = lenoc[23:8];
     assign note = lenoc[7:4];
     assign octave = lenoc[3:0];
+    assign music_score_addr = ((state == pre_draw_cur_note || state == draw_cur_note) ? note_pointer : cur_np);
 
     always@(posedge clk)begin
         case(state)
@@ -123,15 +126,17 @@ module game_controller(
                 end
                 else begin
                     gp_en <= 0;
+                    // Sample signals to prevent noise
+                    cur_np <= note_pointer;
+                    cur_note_length_sample <= cur_note_length;
                     state <= pre_draw_cur_note;
                 end
             end
             pre_draw_cur_note:begin
-                cur_np <= note_pointer + 1;
                 gp_opcode <= 0;
                 gp_tl_x <= 351;
                 gp_tl_y <= tl_y;
-                gp_br_x <= (351 + cur_note_length / length_coef - 1) >= 639 ? 639 : (351 + cur_note_length / length_coef - 1);
+                gp_br_x <= (351 + cur_note_length_sample / length_coef - 1) >= 639 ? 639 : (351 + cur_note_length_sample / length_coef - 1);
                 gp_br_y <= br_y;
                 gp_arg <= color;
                 gp_en <= 1;
@@ -140,16 +145,17 @@ module game_controller(
             draw_cur_note:begin
                 if(gp_finish)begin
                     gp_en <= 0;
+                    cur_x <= gp_br_x;
+                    cur_np <= cur_np + 1;
                     state <= pre_draw_notes;
                 end
             end
             pre_draw_notes:begin
                 if (gp_br_x + 1 <= 639) begin
-                    cur_np <= cur_np + 1;
-                    gp_en <= 0;
-                    gp_tl_x <= gp_br_x + 1;
+                    gp_opcode <= 0;
+                    gp_tl_x <= cur_x + 1;
                     gp_tl_y <= tl_y;
-                    gp_br_x <= (gp_br_x + note_length / length_coef) >= 639 ? 639 : (gp_br_x + note_length / length_coef);
+                    gp_br_x <= (cur_x + note_length / length_coef) >= 639 ? 639 : (cur_x + note_length / length_coef);
                     gp_br_y <= br_y;
                     gp_arg <= color;
                     gp_en <= 1;
@@ -163,6 +169,8 @@ module game_controller(
             draw_notes:begin
                 if(gp_finish)begin
                     gp_en <= 0;
+                    cur_np <= cur_np + 1;
+                    cur_x <= gp_br_x;
                     state <= pre_draw_notes;
                 end
             end
@@ -189,7 +197,7 @@ module game_controller(
     end
 
     music_score music_score (
-        .a(state == pre_draw_cur_note ? note_pointer : cur_np), // input [7 : 0] a
+        .a(cur_np), // input [7 : 0] a
         .spo(lenoc) // output [23 : 0] spo
     );
 
@@ -235,21 +243,21 @@ module graphics_param_lut(
 
     parameter white = 12'hFFF;
 
-    parameter pink = 12'hF9C;
-    parameter light_pink = 12'hFCC;
-    parameter dark_pink = 12'hF6C;
+    parameter pink = 12'hC9F;
+    parameter light_pink = 12'hCCF;
+    parameter dark_pink = 12'hC6F;
 
-    parameter yellow = 12'hFC3;
-    parameter light_yellow = 12'hFF9;
-    parameter dark_yellow = 12'hF93;
+    parameter yellow = 12'h3CF;
+    parameter light_yellow = 12'h9FF;
+    parameter dark_yellow = 12'h39F;
 
-    parameter green = 12'h3C9;
-    parameter light_green = 12'h6F9;
-    parameter dark_green = 12'h396;
+    parameter green = 12'h9C3;
+    parameter light_green = 12'h9F6;
+    parameter dark_green = 12'h693;
 
-    parameter blue = 12'h3CF;
-    parameter light_blue = 12'h3FF;
-    parameter dark_blue = 12'h39F;
+    parameter blue = 12'hFC3;
+    parameter light_blue = 12'hFF3;
+    parameter dark_blue = 12'hF93;
 
     always@(note)begin
         case(note)

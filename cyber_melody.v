@@ -131,8 +131,7 @@ module cyber_melody(
 
     game_controller game_control (
         .clk(clk), 
-        .repaint_clk(div[20]),
-        .keypress(ready), 
+        .keypress(switches[1]), //TODO: for debugging on shitty board
         .keycode(keycode),
         .note_pointer(note_pointer),
         .cur_note_length(cur_length),

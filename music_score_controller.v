@@ -32,6 +32,7 @@ module music_score_controller(
     wire [15:0] orig_length;
 
     reg init = 1;
+    reg [7:0] music_score_addr = 0;
 
     assign orig_length = lenoc[23:8];
     assign cur_note = lenoc[7:4];
@@ -40,6 +41,7 @@ module music_score_controller(
     always@(posedge clk_1ms)begin
         if(rst)begin
             note_pointer <= 0;
+            music_score_addr <= 0;
             init <= 1;
         end
         else if(en)begin
@@ -48,10 +50,14 @@ module music_score_controller(
                 init <= 0;
             end
             else begin
-                if (cur_length == 1)begin
-                    note_pointer <= note_pointer + 1;
-                    #10 cur_length <= orig_length;
+                if (cur_length == 2)begin
+                    cur_length <= cur_length - 1;
+                    music_score_addr <= music_score_addr + 1;
                 end 
+                else if (cur_length == 1)begin
+                    cur_length <= orig_length;
+                    note_pointer <= music_score_addr;
+                end
                 else begin
                     cur_length <= cur_length - 1;
                 end
@@ -60,7 +66,7 @@ module music_score_controller(
     end
 
     music_score music_score (
-        .a(note_pointer), // input [7 : 0] a
+        .a(music_score_addr), // input [7 : 0] a
         .spo(lenoc) // output [23 : 0] spo
     );
 endmodule
