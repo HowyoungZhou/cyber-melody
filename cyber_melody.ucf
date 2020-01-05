@@ -1,5 +1,3 @@
-NET "ready"	LOC = W23	| IOSTANDARD = LVCMOS33;
-
 NET "clk"					LOC = AC18      | IOSTANDARD = LVCMOS18 ;
 NET "rst_n"					LOC = W13       | IOSTANDARD = LVCMOS18 ;
 NET "clk"		 			TNM_NET = TM_CLK ;
@@ -10,10 +8,10 @@ TIMESPEC TS_CLK_100M 	 	= PERIOD "TM_CLK"       10 ns HIGH 50%;
 # NET "led_do"				LOC = M26       | IOSTANDARD = LVCMOS33 ;
 # NET "led_pen"				LOC = P18       | IOSTANDARD = LVCMOS33 ;
 
-# NET "seg_clk"				LOC = M24       | IOSTANDARD = LVCMOS33 ;
-# NET "seg_clr_n"				LOC = M20       | IOSTANDARD = LVCMOS33 ;
-# NET "seg_do"				LOC = L24       | IOSTANDARD = LVCMOS33 ;
-# NET "seg_pen"				LOC = R18       | IOSTANDARD = LVCMOS33 ;
+NET "seg_clk"				LOC = M24       | IOSTANDARD = LVCMOS33 ;
+NET "seg_clr"				LOC = M20       | IOSTANDARD = LVCMOS33 ;
+NET "seg_do"				LOC = L24       | IOSTANDARD = LVCMOS33 ;
+NET "seg_pen"				LOC = R18       | IOSTANDARD = LVCMOS33 ;
 
 # NET "tri_led0_r_n"			LOC = U21       | IOSTANDARD = LVCMOS33 ;
 # NET "tri_led0_g_n"			LOC = U22       | IOSTANDARD = LVCMOS33 ;

@@ -63,8 +63,8 @@ module piano_keypad(
                 5'd17: note <= AS;
                 5'd14: note <= B;
 
-                5'd15: if (!last_state) octave <= (octave + 1 > 9 ? 9 : octave + 1);
-                5'd19: if (!last_state) octave <= (octave - 1 < 0 ? 0 : octave - 1);
+                5'd15: if (!last_state) octave <= (octave == 9 ? 0 : octave + 1);
+                5'd19: if (!last_state) octave <= (octave == 0 ? 9 : octave - 1);
                 default: note <= rest;
             endcase
         end

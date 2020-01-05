@@ -30,7 +30,10 @@ module cyber_melody(
     output vga_h_sync,
     output vga_v_sync,
     output buzzer,
-    output ready
+    output seg_clk,
+    output seg_do,
+    output seg_pen,
+    output seg_clr
     );
 
     wire [31:0] div;
@@ -62,14 +65,22 @@ module cyber_melody(
     wire [17:0] img_rom_addr;
     wire [11:0] img_rom_data;
 
+    // Game statistics
+    wire [19:0] score;
+    wire [23:0] score_bcd;
+    wire [3:0] seg_out;
+
     assign rst = ~rst_n;
+    assign note = switches[0] ? cur_note : keypad_note;
+    assign octave = switches[0] ? cur_octave : keypad_octave;
+    assign {seg_clk, seg_do, seg_pen, seg_clr} = seg_out;
 
     clk_div clk_div (.clk(clk), .div(div), .clk_1ms(clk_1ms));
 
     anti_jitter #(4) sw_aj [15:0](.clk(div[15]), .I(raw_switches), .O(switches));
 
     pitch_generator pitch_generator (
-        .note(note), 
+        .note(switches[1] ? 0 : note), 
         .octave(octave), 
         .clk(clk), 
         .wave(buzzer)
@@ -89,20 +100,6 @@ module cyber_melody(
         .keycode(keycode), 
         .note(keypad_note), 
         .octave(keypad_octave)
-        );
-
-    mux2t1_4 note_mux(
-        .s(switches[0]),
-        .in0(keypad_note),
-        .in1(cur_note),
-        .out(note)
-        );
-
-    mux2t1_4 octave_mux(
-        .s(switches[0]),
-        .in0(keypad_octave),
-        .in1(cur_octave),
-        .out(octave)
         );
 
     vga vga (
@@ -131,7 +128,7 @@ module cyber_melody(
 
     game_controller game_control (
         .clk(clk), 
-        .keypress(switches[1]), //TODO: for debugging on shitty board
+        .keypress(ready),
         .keycode(keycode),
         .note_pointer(note_pointer),
         .cur_note_length(cur_length),
@@ -168,5 +165,30 @@ module cyber_melody(
         .vram_data(vram_data), 
         .rom_addr(img_rom_addr), 
         .finish(gp_finish)
+        );
+
+    game_statistics game_stat (
+        .clk(div[20]), 
+        .cur_octave(cur_octave), 
+        .keypad_octave(keypad_octave), 
+        .cur_note(cur_note), 
+        .keypad_note(keypad_note), 
+        .score(score)
+        );
+
+
+    bcd_encoder bcd_enc (
+        .in(score),
+        .out(score_bcd)
+        );
+
+    Seg7Device seg (
+        .clkIO(div[3]),
+        .clkScan(div[15:14]),
+        .clkBlink(0),
+		.data({score_bcd, 4'h0, keypad_octave}),
+        .point(8'h0),
+        .LES(8'b00000010),
+		.sout(seg_out)
         );
 endmodule
