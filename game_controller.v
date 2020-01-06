@@ -21,7 +21,6 @@
 module game_controller(
     input clk,
     input keypress,
-    input [4:0] keycode,
     input [7:0] note_pointer,
     input [15:0] cur_note_length,
     input [3:0] keypad_octave,

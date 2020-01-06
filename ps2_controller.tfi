@@ -1,0 +1,12 @@
+
+
+
+// Instantiate the module
+ps2_controller instance_name (
+    .ps2_clk(ps2_clk), 
+    .ps2_data(ps2_data), 
+    .keycode(keycode), 
+    .keypress(keypress)
+    );
+
+

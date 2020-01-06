@@ -54,10 +54,10 @@ NET "raw_switches[15]"			LOC = AF10      | IOSTANDARD = LVCMOS15 ;
 #NET "uart_rx"				LOC = W21       | IOSTANDARD = LVCMOS33 | PULLUP ;
 #NET "uart_tx"				LOC = V21       | IOSTANDARD = LVCMOS33 ;
 
-#NET "keyboard_clk"			LOC = P25       | IOSTANDARD = LVCMOS33 | PULLUP ;
-#NET "keyboard_dat"			LOC = N19       | IOSTANDARD = LVCMOS33 | PULLUP ;
-# NET "keyboard_clk"			LOC = N18       | IOSTANDARD = LVCMOS33 | PULLUP ;
-# NET "keyboard_dat"			LOC = M19       | IOSTANDARD = LVCMOS33 | PULLUP ;
+# NET "ps2_clk"			LOC = P25       | IOSTANDARD = LVCMOS33 | PULLUP ;
+# NET "ps2_data"			LOC = N19       | IOSTANDARD = LVCMOS33 | PULLUP ;
+NET "ps2_clk"			LOC = N18       | IOSTANDARD = LVCMOS33;
+NET "ps2_data"			LOC = M19       | IOSTANDARD = LVCMOS33;
 
 NET "vga_blue[0]"			LOC = T20       | IOSTANDARD = LVCMOS33 | SLEW = FAST ;
 NET "vga_blue[1]"			LOC = R20       | IOSTANDARD = LVCMOS33 | SLEW = FAST ;
