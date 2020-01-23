@@ -1,0 +1,21 @@
+
+
+
+// Instantiate the module
+mode_switch instance_name (
+    .mode(mode), 
+    .cur_octave(cur_octave), 
+    .keypad_octave(keypad_octave), 
+    .keyboard_octave(keyboard_octave), 
+    .high_keyboard_octave(high_keyboard_octave), 
+    .cur_note(cur_note), 
+    .keypad_note(keypad_note), 
+    .keyboard_note(keyboard_note), 
+    .octave(octave), 
+    .input_octave(input_octave), 
+    .note(note), 
+    .input_note(input_note), 
+    .octave_display(octave_display)
+    );
+
+

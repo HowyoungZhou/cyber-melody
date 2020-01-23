@@ -28,6 +28,8 @@ module clk_div(
 
     always@(posedge clk) begin
       div <= div + 1'b1;
+      // generate 1 ms clock signal
+      // count to 49999
       if(clk_1ms_counter == 49_999)begin
         clk_1ms <= ~clk_1ms;
         clk_1ms_counter <= 0;

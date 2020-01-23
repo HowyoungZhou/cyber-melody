@@ -41,9 +41,9 @@ module cyber_melody(
     wire [31:0] div;
     wire music_score_con_en;
     wire [3:0] cur_octave, keypad_octave, keyboard_octave, high_keyboard_octave;
-    reg [3:0] octave, input_octave;
+    wire [3:0] octave, input_octave;
     wire [3:0] cur_note, keypad_note, keyboard_note;
-    reg [3:0] note, input_note;
+    wire [3:0] note, input_note;
     wire [15:0] cur_length;
     wire [4:0] keycode;
     wire [15:0] switches;
@@ -73,7 +73,7 @@ module cyber_melody(
     wire [19:0] score;
     wire [23:0] score_bcd;
     wire [3:0] seg_out;
-    reg [7:0] octave_display;
+    wire [7:0] octave_display;
 
     // Keyboard
     wire [7:0] kb_keycode;
@@ -88,42 +88,21 @@ module cyber_melody(
 
     anti_jitter #(4) sw_aj [15:0](.clk(div[15]), .I(raw_switches), .O(switches));
 
-    always@(mode)begin
-        case(mode)
-            0: // keypad mode
-            begin
-                note <= keypad_note;
-                octave <= keypad_octave;
-                input_note <= keypad_note;
-                input_octave <= keypad_octave;
-                octave_display <= {4'h0, keypad_octave};
-            end
-            1: // keyboard mode
-            begin
-                note <= keyboard_note;
-                octave <= keyboard_octave;
-                input_note <= keyboard_note;
-                input_octave <= keyboard_octave;
-                octave_display <= {keyboard_octave, high_keyboard_octave};
-            end
-            2: // auto mode
-            begin
-                note <= cur_note;
-                octave <= cur_octave;
-                input_note <= 0;
-                input_octave <= 4;
-                octave_display <= {4'h0, cur_octave};
-            end
-            3: // mute mode
-            begin
-                note <= 0;
-                octave <= 4;
-                input_note <= 0;
-                input_octave <= 4;
-                octave_display <= 8'h0;
-            end
-        endcase
-    end
+    mode_switch mode_switch (
+        .mode(mode), 
+        .cur_octave(cur_octave), 
+        .keypad_octave(keypad_octave), 
+        .keyboard_octave(keyboard_octave), 
+        .high_keyboard_octave(high_keyboard_octave), 
+        .cur_note(cur_note), 
+        .keypad_note(keypad_note), 
+        .keyboard_note(keyboard_note), 
+        .octave(octave), 
+        .input_octave(input_octave), 
+        .note(note), 
+        .input_note(input_note), 
+        .octave_display(octave_display)
+        );
 
     pitch_generator pitch_generator (
         .note(note), 
@@ -251,4 +230,51 @@ module cyber_melody(
         .LES(8'b00000011),
 		.sout(seg_out)
         );
+endmodule
+
+module mode_switch(
+    input [1:0] mode,
+    input [3:0] cur_octave, keypad_octave, keyboard_octave, high_keyboard_octave,
+    input [3:0] cur_note, keypad_note, keyboard_note,
+    output reg [3:0] octave, input_octave,
+    output reg [3:0] note, input_note,
+    output reg [7:0] octave_display
+    );
+
+    always@*begin
+        case(mode)
+            0: // keypad mode
+            begin
+                note <= keypad_note;
+                octave <= keypad_octave;
+                input_note <= keypad_note;
+                input_octave <= keypad_octave;
+                octave_display <= {4'h0, keypad_octave};
+            end
+            1: // keyboard mode
+            begin
+                note <= keyboard_note;
+                octave <= keyboard_octave;
+                input_note <= keyboard_note;
+                input_octave <= keyboard_octave;
+                octave_display <= {keyboard_octave, high_keyboard_octave};
+            end
+            2: // auto mode
+            begin
+                note <= cur_note;
+                octave <= cur_octave;
+                input_note <= 0;
+                input_octave <= cur_octave;
+                octave_display <= {4'h0, cur_octave};
+            end
+            3: // mute mode
+            begin
+                note <= 0;
+                octave <= 4;
+                input_note <= 0;
+                input_octave <= 4;
+                octave_display <= 8'h0;
+            end
+        endcase
+    end
 endmodule

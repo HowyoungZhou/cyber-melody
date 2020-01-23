@@ -50,7 +50,7 @@ module pitch_generator_sim;
 		#100;
         
 		// Add stimulus here
-		forever #10 clk <= ~clk;
+		forever #5 clk <= ~clk;
 	end
       
 endmodule

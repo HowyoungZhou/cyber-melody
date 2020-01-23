@@ -42,26 +42,31 @@ module music_score_controller(
     
     always@(posedge clk_1ms)begin
         if(rst)begin
+            // go back to the first note
             note_pointer <= 0;
             music_score_addr <= 0;
             init <= 1;
         end
         else if(en)begin
             if (init)begin
+                // load length to the counter
                 cur_length <= orig_length;
                 init <= 0;
             end
             else begin
                 if (cur_note != eof) begin
                     if (cur_length == 2)begin
+                        // pre-load the address in the ROM here to ensure the length is available in the next state
                         cur_length <= cur_length - 1;
                         music_score_addr <= music_score_addr + 1;
                     end 
                     else if (cur_length == 1)begin
                         cur_length <= orig_length;
+                        // delay the change of the note pointer to avoid the invalid state
                         note_pointer <= music_score_addr;
                     end
                     else begin
+                        // update counter
                         cur_length <= cur_length - 1;
                     end
                 end

@@ -31,6 +31,7 @@ module pitch_generator(
 
     assign en = note != 0;
 
+    // just feed the period in the ROM to the wave generator
     pitch_period_table pitch_period_table_rom (
         .a(period_addr), // input [7 : 0] a
         .spo(period) // output [31 : 0] spo

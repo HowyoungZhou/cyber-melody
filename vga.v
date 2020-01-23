@@ -48,6 +48,7 @@ module vga(
         .doutb(vout_data) // output [11 : 0] doutb
         );
 
+    // feed the data from VRAM to VGA controller
     vga_controller vgac (
         .vga_clk(vga_clk), 
         .clrn(clrn), 

@@ -20,6 +20,7 @@ module graphics_processor(
     parameter width = 640;
     parameter height = 480;
 
+    // states
     parameter init = 0;
     parameter fill_set_addr = 1;
     parameter fill_write_ram = 2;
@@ -28,6 +29,7 @@ module graphics_processor(
     parameter draw_write_ram = 5;
     parameter fin = 6;
 
+    // opcodes
     parameter fill = 1'b0;
     parameter draw = 1'b1;
 
@@ -43,6 +45,7 @@ module graphics_processor(
         if(en)begin
             case(state)
                 init:begin
+                    // init registers
                     cur_x <= tl_x;
                     cur_y <= tl_y;
                     vram_addr <= tl_y * width + tl_x;
@@ -55,6 +58,7 @@ module graphics_processor(
                     end
                 end
                 fill_set_addr:begin
+                    // move to the next pixel
                     if(cur_x < br_x) begin
                         cur_x <= cur_x + 1;
                     end
@@ -65,19 +69,23 @@ module graphics_processor(
                     state <= fill_write_ram;
                 end
                 fill_write_ram:begin
+                    // if the position is out of the rectangle, goto finish
                     if(cur_y > br_y) begin
                         state <= fin;
                     end
                     else begin
+                        // load address
                         vram_addr <= cur_y * width + cur_x;
                         state <= fill_set_addr;
                     end
                 end
                 draw_set_addr:begin
                     state <= draw_read_rom;
+                    // load address
                     vram_addr <= cur_y * width + cur_x;
                 end
                 draw_read_rom:begin
+                    // move to the next pixel
                     if(cur_x < br_x) begin
                         cur_x <= cur_x + 1;
                     end
@@ -88,10 +96,12 @@ module graphics_processor(
                     state <= draw_write_ram;
                 end
                 draw_write_ram:begin
+                    // if the position is out of the rectangle, goto finish
                     if(cur_y > br_y) begin
                         state <= fin;
                     end
                     else begin
+                        // go to the next address of ROM
                         rom_addr <= rom_addr + 1;
                         state <= draw_set_addr;
                     end

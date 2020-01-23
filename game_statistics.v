@@ -11,7 +11,9 @@ module game_statistics(
     parameter eof = 15;
 
     always@(posedge clk)begin
+        // if the note and octave are correct
         if(cur_note == keypad_note && cur_octave == keypad_octave)begin
+            // if the note is not rest or EOF, increase the score
             if(cur_note != rest && cur_note != eof)begin
                 score <= score + 1;
             end

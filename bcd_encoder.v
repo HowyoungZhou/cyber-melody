@@ -2,7 +2,7 @@ module bcd_encoder (
     input [19:0] in,
     output [23:0] out
 );
-
+    // convert to BCD
     assign out[3:0] = in % 10;
     assign out[7:4] = in / 10 % 10;
     assign out[11:8] = in / 100 % 10;

@@ -29,6 +29,7 @@ module piano_keyboard(
     always@(posedge clk)begin
         last_state <= keypress;
         if(keypress)begin
+            // keycode mapping
             case (keycode)
                 8'h0D: begin note <= C; octave <= cur_octave; end
                 8'h16: begin note <= CS; octave <= cur_octave; end

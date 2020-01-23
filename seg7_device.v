@@ -26,10 +26,14 @@ module Seg7Device(
 	wire [63:0] dispData;
 	wire [31:0] dispPattern;
 	
+	// decode 7-segment code
 	Seg7Decode U0(.hex(data), .point(point),
 		.LE(LES & {8{clkBlink}}), .pattern(dispData));
+
+	// remap the code
 	Seg7Remap U1(.I(data), .O(dispPattern));
 
+	// parallel to serial conversion
 	ShiftReg #(.WIDTH(64)) U2(.clk(clkIO), .pdata(dispData), .sout(sout));
 
 	always @*

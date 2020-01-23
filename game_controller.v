@@ -35,6 +35,7 @@ module game_controller(
     output reg music_score_con_en = 0
     );
 
+    // states
     parameter splash = 0;
     parameter erase_splash = 1;
     parameter paint_main = 2;
@@ -77,6 +78,7 @@ module game_controller(
     wire [31:0] cur_note_br_x;
     wire [31:0] notes_br_x;
 
+    // extract length, note and octave from LENOC
     assign note_length = lenoc[23:8];
     assign note = lenoc[7:4];
     assign octave = lenoc[3:0];
@@ -87,7 +89,8 @@ module game_controller(
     always@(posedge clk)begin
         case(state)
             splash: if(keypress) state <= erase_splash;
-            erase_splash:begin
+            // call GP to draw a white rectangle on the whole screen
+            erase_splash:begin 
                 if (~gp_finish) begin
                     gp_opcode <= 0;
                     gp_tl_x <= 0;
@@ -103,6 +106,7 @@ module game_controller(
                 end
             end
             paint_main: begin
+                // call GP to paint main screen image from ROM
                 if (~gp_finish) begin
                     gp_opcode <= 1;
                     gp_tl_x <= 0;
@@ -120,19 +124,22 @@ module game_controller(
             end
             main:begin
                 timer_en <= 1;
+                // repaint if repaint signal is received
                 if(repaint_sig)begin
                     timer_en <= 0;
-                    // Sample signals to prevent noise
+                    // sample signals to prevent noise
                     cur_np <= note_pointer;
                     cur_note_length_sample <= cur_note_length;
                     state <= pre_clear_cur_note_top;
                 end
             end
             pre_clear_cur_note_top:begin
+                // return to main state to if EOF is detected
                 if(note == eof)begin
                     state <= main;
                 end
                 else begin
+                    // clear the screen above the current bar
                     gp_opcode <= 0;
                     gp_tl_x <= 351;
                     gp_tl_y <= 0;
@@ -151,6 +158,7 @@ module game_controller(
                 end
             end
             pre_clear_cur_note_bottom:begin
+                // clear the screen below the current bar
                 gp_opcode <= 0;
                 gp_tl_x <= 351;
                 gp_tl_y <= br_y + 1;
@@ -167,6 +175,7 @@ module game_controller(
                 end
             end
             pre_draw_cur_note:begin
+                // draw current bar
                 gp_opcode <= 0;
                 gp_tl_x <= 351;
                 gp_tl_y <= tl_y;
@@ -184,9 +193,10 @@ module game_controller(
                     state <= pre_clear_notes_top;
                 end
             end
-            // Draw notes after the current note
+            // draw notes after the current note
             pre_clear_notes_top:begin
                 if (cur_x + 1 <= 639) begin
+                    // clear the screen above the bar
                     gp_opcode <= 0;
                     gp_tl_x <= cur_x + 1;
                     gp_tl_y <= 0;
@@ -208,6 +218,7 @@ module game_controller(
                 end
             end
             pre_clear_notes_bottom:begin
+                // clear the screen below the bar
                 gp_opcode <= 0;
                 gp_tl_x <= cur_x + 1;
                 gp_tl_y <= br_y + 1;
@@ -224,6 +235,7 @@ module game_controller(
                 end
             end
             pre_draw_notes:begin
+                // draw the bar of the note
                 gp_opcode <= 0;
                 gp_tl_x <= cur_x + 1;
                 gp_tl_y <= tl_y;
@@ -236,6 +248,7 @@ module game_controller(
             draw_notes:begin
                 if(gp_finish)begin
                     gp_en <= 0;
+                    // switch to the next note
                     cur_np <= cur_np + 1;
                     cur_x <= gp_br_x;
                     state <= pre_clear_notes_top;
@@ -266,6 +279,7 @@ module game_controller(
     );
 endmodule
 
+// a LUT for colors and positions of different notes
 module graphics_param_lut(
     input [3:0] note,
     input [3:0] cur_octave,
@@ -378,6 +392,7 @@ module graphics_param_lut(
     end
 endmodule
 
+// a count-down timer
 module timer(
     input clk,
     input en,

@@ -45,6 +45,7 @@ module piano_keypad(
     always@(posedge clk)begin
         last_state <= ready;
         if(ready)begin
+            // keycode mapping
             case (keycode)
                 5'd4: note <= C;
                 5'd8: note <= CS;

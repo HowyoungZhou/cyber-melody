@@ -32,6 +32,7 @@ module keypad(
     assign row = state? 4'h0: 4'bzzzz;
     assign col = state? 5'bzzzzz: 5'h0;
     
+    // read keyline x and keyline y one by one
     always @ (posedge clk)
     begin
         if(state)
@@ -45,6 +46,7 @@ module keypad(
     wire raw_col = (keyLineY == 5'b11110) | (keyLineY == 5'b11101) | (keyLineY == 5'b11011) | (keyLineY == 5'b10111) | (keyLineY == 5'b01111);
     wire raw = raw_row & raw_col;
     
+    // keycode conversion
     always @*
     begin
         case(keyLineX)
